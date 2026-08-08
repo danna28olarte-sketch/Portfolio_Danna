@@ -2,6 +2,7 @@
 
 import { FormEvent, PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ArrowRight,
   BarChart3,
@@ -22,19 +23,10 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import { Service, EN_SERVICES, ES_SERVICES } from "./servicesData";
 
 type Lang = "en" | "es";
 type Theme = "dark" | "light";
-
-type Service = {
-  number: string;
-  title: string;
-  description: string;
-  tags: string[];
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
-  accent: "blue" | "pink";
-  projects: string[];
-};
 
 type Copy = {
   nav: {
@@ -73,6 +65,8 @@ type Copy = {
     text: string;
     selected: string;
     items: Service[];
+    viewProjects: string;
+    closeModal: string;
   };
   portfolio: {
     eyebrow: string;
@@ -118,131 +112,7 @@ type Copy = {
   footer: string;
 };
 
-const EN_SERVICES: Service[] = [
-  {
-    number: "01",
-    title: "AI content creation",
-    description:
-      "On-brand product imagery, lifestyle visuals, and ad creatives generated at scale in days, not weeks.",
-    tags: ["Product images", "Lifestyle", "Reels", "Ad creatives"],
-    icon: Sparkles,
-    accent: "blue",
-    projects: ["Skincare: hero set", "Sneakers: static carousel", "Apparel: lifestyle pack"],
-  },
-  {
-    number: "02",
-    title: "Video and creative production",
-    description:
-      "Native eCommerce video: product spots, ads, and social content built for the feed and the funnel.",
-    tags: ["Product", "Spots", "Ads", "Social"],
-    icon: Video,
-    accent: "pink",
-    projects: ["Coffee brand: :30 spot", "Home goods: reels x6", "DTC: product demo"],
-  },
-  {
-    number: "03",
-    title: "Content automation",
-    description:
-      "AI workflows that turn one asset into hundreds of variations by channel, audience, and campaign.",
-    tags: ["AI workflows", "Variations", "Prompts", "Scale"],
-    icon: Workflow,
-    accent: "blue",
-    projects: ["12 variations / hour", "Prompt pipeline", "Asset repurposing"],
-  },
-  {
-    number: "04",
-    title: "Paid media",
-    description:
-      "A trafficker-led Meta and Google setup built around your content, funnel, and numbers.",
-    tags: ["Trafficker", "Meta Ads", "Google Ads", "Reports"],
-    icon: Megaphone,
-    accent: "pink",
-    projects: ["Meta ads sprint", "Google Search setup", "Weekly reporting"],
-  },
-  {
-    number: "05",
-    title: "Landing pages",
-    description:
-      "High-converting pages with copy, design, and tracking ready to plug into your campaigns.",
-    tags: ["Design", "Copy", "Forms", "CRO"],
-    icon: LayoutTemplate,
-    accent: "blue",
-    projects: ["DTC supplement LP", "Lead capture page", "Tracking funnel"],
-  },
-  {
-    number: "06",
-    title: "Digital strategy",
-    description:
-      "Roadmap, ICP, and perceived value: the strategic base that gives direction to content, media, and product.",
-    tags: ["Benchmarking", "ICP", "Perceived value", "User personas"],
-    icon: Search,
-    accent: "pink",
-    projects: ["Competitive map", "3 user personas + ICP", "Perceived value matrix"],
-  },
-];
-
-const ES_SERVICES: Service[] = [
-  {
-    number: "01",
-    title: "Creación de contenido con IA",
-    description:
-      "Imágenes de producto, lifestyle y creatividades on-brand a escala, en días, no semanas.",
-    tags: ["Imágenes de producto", "Lifestyle", "Reels", "Ad creatives"],
-    icon: Sparkles,
-    accent: "blue",
-    projects: ["Skincare: set hero", "Tenis: carrusel estático", "Apparel: pack lifestyle"],
-  },
-  {
-    number: "02",
-    title: "Producción audiovisual",
-    description:
-      "Video nativo eCom: spots de producto, ads y contenido social hechos para el feed y el funnel.",
-    tags: ["Producto", "Spots", "Ads", "Social"],
-    icon: Video,
-    accent: "pink",
-    projects: ["Marca de café: spot :30", "Hogar: reels x6", "DTC: demo de producto"],
-  },
-  {
-    number: "03",
-    title: "Automatización de contenido",
-    description:
-      "Flujos con IA que convierten un asset en cientos de variaciones por canal, audiencia y campaña.",
-    tags: ["Flujos IA", "Variaciones", "Prompts", "Escala"],
-    icon: Workflow,
-    accent: "blue",
-    projects: ["12 variaciones / hora", "Pipeline de prompts", "Reutilización de assets"],
-  },
-  {
-    number: "04",
-    title: "Pauta digital",
-    description:
-      "Setup liderado por trafficker para Meta y Google alrededor de tu contenido, tu funnel y tus números.",
-    tags: ["Trafficker", "Meta Ads", "Google Ads", "Reportes"],
-    icon: Megaphone,
-    accent: "pink",
-    projects: ["Sprint de Meta Ads", "Setup Google Search", "Reporte semanal"],
-  },
-  {
-    number: "05",
-    title: "Landing pages",
-    description:
-      "Páginas de alta conversión con copy, diseño y tracking listas para conectarse con tus campañas.",
-    tags: ["Diseño", "Copy", "Forms", "CRO"],
-    icon: LayoutTemplate,
-    accent: "blue",
-    projects: ["Suplemento DTC: LP", "Página de captura", "Tracking funnel"],
-  },
-  {
-    number: "06",
-    title: "Estrategia digital",
-    description:
-      "Hoja de ruta, ICP y valor percibido: la base estratégica que da dirección a contenido, pauta y producto.",
-    tags: ["Benchmarking", "ICP", "Valor percibido", "User personas"],
-    icon: Search,
-    accent: "pink",
-    projects: ["Mapa competitivo", "3 user personas + ICP", "Matriz de valor percibido"],
-  },
-];
+// Services data array is imported from servicesData.ts
 
 const COPY: Record<Lang, Copy> = {
   en: {
@@ -282,12 +152,12 @@ const COPY: Record<Lang, Copy> = {
         "AI content creation",
         "Video production",
         "Content automation",
-        "Meta Ads",
-        "Google Ads",
-        "Trafficker",
-        "Landing pages",
+        "Digital Strategy",
+        "Paid Media",
+        "Website Design",
+        "Sales Funnel",
       ],
-      connected: "Connected as one system",
+      connected: "CRM Management",
     },
     services: {
       eyebrow: "SERVICES · 6 PILLARS",
@@ -295,6 +165,8 @@ const COPY: Record<Lang, Copy> = {
       text: "Each pillar works on its own, but they are designed to connect into a content + ads engine for your store.",
       selected: "Selected projects",
       items: EN_SERVICES,
+      viewProjects: "View projects",
+      closeModal: "Close",
     },
     portfolio: {
       eyebrow: "PORTFOLIO · SELECTED WORK",
@@ -343,7 +215,7 @@ const COPY: Record<Lang, Copy> = {
         business: "Skincare DTC, specialty coffee, etc.",
         message: "Tell us what you need...",
       },
-      serviceOptions: ["AI Content", "Video", "Meta Ads", "Google Ads", "Landing page", "Full system"],
+      serviceOptions: ["AI Content", "Video", "Digital Strategy", "Paid Media", "Landing page", "Full system"],
     },
     footer: "HERO → SERVICES → PORTFOLIO → CONTACT",
   },
@@ -384,12 +256,12 @@ const COPY: Record<Lang, Copy> = {
         "Creación de contenido con IA",
         "Producción audiovisual",
         "Automatización de contenido",
-        "Meta Ads",
-        "Google Ads",
-        "Trafficker",
-        "Landing pages",
+        "Estrategia Digital",
+        "Publicidad en Redes",
+        "Diseño Web",
+        "Sales Funnel",
       ],
-      connected: "Conectados como un solo sistema",
+      connected: "Gestión de CRM",
     },
     services: {
       eyebrow: "SERVICIOS · 6 PILARES",
@@ -397,6 +269,8 @@ const COPY: Record<Lang, Copy> = {
       text: "Cada pilar funciona por sí solo, pero están pensados para conectarse en un motor de contenido + pauta para tu tienda.",
       selected: "Proyectos seleccionados",
       items: ES_SERVICES,
+      viewProjects: "Ver proyectos",
+      closeModal: "Cerrar",
     },
     portfolio: {
       eyebrow: "PORTAFOLIO · TRABAJOS SELECCIONADOS",
@@ -445,7 +319,7 @@ const COPY: Record<Lang, Copy> = {
         business: "Skincare DTC, café especialidad, etc.",
         message: "Cuéntanos qué necesitas...",
       },
-      serviceOptions: ["Contenido con IA", "Video", "Meta Ads", "Google Ads", "Landing page", "Sistema completo"],
+      serviceOptions: ["Contenido con IA", "Video", "Estrategia Digital", "Publicidad en Redes", "Landing page", "Sistema completo"],
     },
     footer: "HERO → SERVICIOS → PORTAFOLIO → CONTACTO",
   },
@@ -455,9 +329,9 @@ const BLOCK_IMAGES = [
   "/assets/images/content/Image creator.png",
   "/assets/images/content/Video Prodcution.png",
   "/assets/images/content/Content automation.png",
-  "/assets/images/content/metads-paguraicard.png",
-  "/assets/images/content/Google ads.png",
-  "/assets/images/content/Trafficker.png",
+  "/assets/images/projects/Servicio 4.png",
+  "/assets/images/projects/Servicio 5.png",
+  "/assets/images/projects/Servicio 6.png",
   "/assets/images/content/Landing pages.png",
   "/assets/images/content/Connected as one system.png",
 ];
@@ -472,7 +346,19 @@ const PORTFOLIO_IMAGES = [
   "/assets/images/content/Home goods.png",
 ];
 
-function moveGlow(e: ReactPointerEvent<HTMLElement>) {
+const SERVICE_BANNER_IMAGES = [
+  "/assets/images/projects/Banner (IA creation).png",
+  "/assets/images/projects/Banner (Video).png",
+  "/assets/images/projects/Automatización.png",
+  "/assets/images/projects/Banner meta ads.png",
+  "/assets/images/projects/Banner Google Ads.png",
+  "/assets/images/projects/Banner trafficker.png",
+  "/assets/images/projects/Banner (LP).png",
+  "/assets/images/content/Connected as one system.png",
+  "/assets/images/projects/service5-project0.png",
+];
+
+export function moveGlow(e: ReactPointerEvent<HTMLElement>) {
   const rect = e.currentTarget.getBoundingClientRect();
   e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
   e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
@@ -482,7 +368,7 @@ function moveGlow(e: ReactPointerEvent<HTMLElement>) {
   e.currentTarget.style.setProperty("--py", `${e.clientY - rect.top}px`);
 }
 
-function DotMatrix() {
+export function DotMatrix() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -598,6 +484,8 @@ function useCardGlow() {
       ".lead-form",
       ".hero-visual",
       ".proof-strip div",
+      ".modal-container",
+      ".modal-banner",
     ].join(",");
 
     const updateGlow = (event: PointerEvent) => {
@@ -634,12 +522,53 @@ export default function PaguraiLanding() {
   const [lang, setLang] = useState<Lang>("en");
   const [theme, setTheme] = useState<Theme>("dark");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openService, setOpenService] = useState(0);
   const [selected, setSelected] = useState([0, 2]);
   const [sent, setSent] = useState(false);
+  const [activeModalService, setActiveModalService] = useState<number | null>(null);
+  const [activeModalBlock, setActiveModalBlock] = useState<number | null>(null);
 
   const copy = COPY[lang];
   useCardGlow();
+
+  const blockToServiceMap: Record<number, number> = {
+    0: 0, // AI Content
+    1: 1, // Video
+    2: 2, // Content Automation
+    3: 3, // Meta Ads
+    4: 4, // Google Ads
+    5: 5, // Trafficker Digital
+    6: 6, // Landing Pages
+    7: 7, // CRM Management
+  };
+
+  useEffect(() => {
+    if (activeModalService !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeModalService]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveModalService(null);
+        setActiveModalBlock(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setActiveModalService(null);
+      setActiveModalBlock(null);
+    }
+  };
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -800,35 +729,43 @@ export default function PaguraiLanding() {
           </div>
 
           <div className="block-grid">
-            {copy.blocks.items.map((block, index) => (
-              <article
-                className="glow-card mini block-card"
-                key={block}
-                tabIndex={0}
-                aria-label={block}
-                onPointerMove={moveGlow}
-              >
-                <div className="block-card-media" aria-hidden="true">
-                  <Image
-                    src={BLOCK_IMAGES[index]}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="block-card-scrim" aria-hidden="true" />
-                <div className="block-card-head">
-                  <span className="card-num">{String(index + 1).padStart(2, "0")}</span>
-                  <CheckCircle2 size={22} />
-                </div>
-                <h3>{block}</h3>
-              </article>
-            ))}
+            {copy.blocks.items.map((block, index) => {
+              return (
+                <article
+                  className="glow-card mini block-card cursor-pointer"
+                  key={block}
+                  tabIndex={0}
+                  aria-label={block}
+                  onPointerMove={moveGlow}
+                  onClick={() => {
+                    setActiveModalBlock(index);
+                    setActiveModalService(blockToServiceMap[index] ?? 0);
+                  }}
+                >
+                  <div className="block-card-media" aria-hidden="true">
+                    <Image
+                      src={BLOCK_IMAGES[index]}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 25vw"
+                    />
+                  </div>
+                  <div className="block-card-scrim" aria-hidden="true" />
+                  <div className="block-card-head">
+                    <span className="card-num">{String(index + 1).padStart(2, "0")}</span>
+                    <CheckCircle2 size={22} />
+                  </div>
+                  <h3>{block}</h3>
+                </article>
+              );
+            })}
             <article
-              className="glow-card mini block-card connected-card"
-              tabIndex={0}
-              aria-label={copy.blocks.connected}
+              className="glow-card mini block-card connected-card cursor-pointer"
               onPointerMove={moveGlow}
+              onClick={() => {
+                setActiveModalBlock(7);
+                setActiveModalService(6);
+              }}
             >
               <div className="block-card-media" aria-hidden="true">
                 <Image
@@ -848,57 +785,7 @@ export default function PaguraiLanding() {
           </div>
         </section>
 
-        <section className="section-block service-system">
-          <div className="section-head">
-            <div>
-              <span className="eyebrow blue">{copy.services.eyebrow}</span>
-              <h2>{copy.services.title}</h2>
-            </div>
-            <p>{copy.services.text}</p>
-          </div>
 
-          <div className="service-list">
-            {copy.services.items.map((service, index) => {
-              const Icon = service.icon;
-              const isOpen = openService === index;
-              return (
-                <article
-                  className={`service-row ${service.accent} ${isOpen ? "open" : ""}`}
-                  key={service.title}
-                >
-                  <button type="button" onClick={() => setOpenService(isOpen ? -1 : index)}>
-                    <span className="service-number">{service.number}</span>
-                    <span className="service-icon"><Icon size={24} /></span>
-                    <span className="service-main">
-                      <strong>{service.title}</strong>
-                      <small>{service.description}</small>
-                    </span>
-                    <span className="service-tags">
-                      {service.tags.map((tag) => <em key={tag}>{tag}</em>)}
-                    </span>
-                    <span className="service-plus">{isOpen ? "-" : "+"}</span>
-                  </button>
-
-                  <div className="service-panel">
-                    <div className="panel-copy">
-                      <span>{copy.services.selected}</span>
-                      <h3>{service.title}</h3>
-                      <p>{service.description}</p>
-                    </div>
-                    <div className="project-stack">
-                      {service.projects.map((project) => (
-                        <div key={project}>
-                          <CheckCircle2 size={16} />
-                          <span>{project}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
 
         <section className="section-block" id="portfolio">
           <div className="section-head">
@@ -914,11 +801,17 @@ export default function PaguraiLanding() {
           <div className="portfolio-grid">
             {copy.portfolio.items.map(([title, tag, size], index) => (
               <article
-                className={`portfolio-card ${size}`}
+                className={`portfolio-card ${size} cursor-pointer`}
                 key={title}
                 tabIndex={0}
                 aria-label={title}
                 onPointerMove={moveGlow}
+                onClick={() => {
+                  if (index === 1) {
+                    setActiveModalBlock(1);
+                    setActiveModalService(1); // Service index 1 corresponds to Video and creative production
+                  }
+                }}
               >
                 <div className="portfolio-media">
                   <Image
@@ -1019,6 +912,159 @@ export default function PaguraiLanding() {
         <span>PAGURAI © 2026</span>
         <span>{copy.footer}</span>
       </footer>
+
+      {activeModalService !== null && (() => {
+        let service = copy.services.items[activeModalService];
+        if (!service) return null;
+        
+        let bannerImage = SERVICE_BANNER_IMAGES[activeModalService];
+        
+        // Define language-specific banner mapping based on activeModalBlock
+        if (lang === "es") {
+          const esBanners: Record<number, string> = {
+            0: "/assets/images/projects/Banner (IA creation).png",
+            1: "/assets/images/projects/Banner (Video).png",
+            2: "/assets/images/projects/Automatización.png",
+            3: "/assets/images/projects/Banner Estrategia Digtal.png",
+            4: "/assets/images/projects/Publicidad en redes.png",
+            5: "/assets/images/projects/Banner diseño web.png",
+            6: "/assets/images/projects/Banner (LP).png",
+            7: "/assets/images/projects/Banner CRM.png",
+          };
+          if (activeModalBlock !== null && esBanners[activeModalBlock] !== undefined) {
+            bannerImage = esBanners[activeModalBlock];
+          }
+        } else {
+          const enBanners: Record<number, string> = {
+            0: "/assets/images/projects/Banner (IA Creation) Ingles.png",
+            1: "/assets/images/projects/Banner Trafficker (Ingles).png",
+            2: "/assets/images/projects/Automatización (Ingles).png",
+            3: "/assets/images/projects/Banner ED (Ingless).png",
+            4: "/assets/images/projects/PD (Ingles)}.png",
+            5: "/assets/images/projects/Banner Diseño Web ingles.png",
+            6: "/assets/images/projects/Banner (LP) Ingles.png",
+            7: "/assets/images/projects/Banner CRM (Ingles).png",
+          };
+          if (activeModalBlock !== null && enBanners[activeModalBlock] !== undefined) {
+            bannerImage = enBanners[activeModalBlock];
+          }
+        }
+
+        let modalProjectsTitle = service.cardTitle || copy.services.selected;
+
+        return (
+          <div className="modal-overlay" onClick={handleBackdropClick}>
+            <div className={`modal-container ${service.accent}`} onPointerMove={moveGlow}>
+              <button
+                type="button"
+                className="modal-close-btn"
+                onClick={() => setActiveModalService(null)}
+                aria-label={copy.services.closeModal}
+              >
+                <X size={20} />
+              </button>
+              
+              <div className="modal-content">
+                <div className="modal-header">
+                  <span className="modal-number">{service.number}</span>
+                  <h2 className="modal-title">{service.title}</h2>
+                </div>
+
+                <div className="modal-banner" style={{ height: "auto", aspectRatio: "auto", overflow: "visible" }} onPointerMove={moveGlow}>
+                  <div className="modal-banner-scrim" />
+                  <img
+                    src={bannerImage}
+                    alt={service.title}
+                    className="modal-banner-image"
+                    style={{ position: "relative", display: "block", width: "100%", height: "auto", objectFit: "contain" }}
+                  />
+                </div>
+
+                <div className="modal-body">
+                  <div className="modal-info">
+                    <p className="modal-desc">{service.description}</p>
+                    
+                    {((activeModalService === 0 || activeModalService === 1 || activeModalService === 2) || activeModalService === 4 || activeModalService === 5 || activeModalService === 6 || activeModalService === 7) && (
+                      <div style={{ marginTop: "16px", marginBottom: "16px" }}>
+                        <span className="eyebrow" style={{ fontSize: "11px", color: "var(--ink-muted)", letterSpacing: "0.1em" }}>
+                          {lang === "es" ? "HERRAMIENTAS USADAS" : "TOOLS USED"}
+                        </span>
+                        <div style={{ display: "flex", gap: "16px", alignItems: "center", marginTop: "10px", flexWrap: "wrap" }}>
+                          {(activeModalService === 5 || activeModalService === 6) ? (
+                            <>
+                              <img src="/assets/images/projects/Logo Claude.png" alt="Claude" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (1).png" alt="React" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Antigravity.png" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Github.png" alt="Github" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                            </>
+                          ) : activeModalService === 7 ? (
+                            <>
+                              <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/N8N.png" alt="N8N" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Zapier.png" alt="Zapier" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Codex.png" alt="Codex" style={{ height: "38px", width: "auto" }} />
+                            </>
+                          ) : activeModalService === 4 ? (
+                            <>
+                              <img src="/assets/images/projects/Logo (Meta).png" alt="Meta" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo (Google).png" alt="Google" style={{ height: "38px", width: "auto" }} />
+                            </>
+                          ) : (
+                            <>
+                              <img src="/assets/images/projects/Texto.png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (1).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (2).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (3).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (4).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="modal-tags">
+                      {service.tags.map((tag) => (
+                        <em key={tag}>{tag}</em>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="modal-projects-box">
+                    <h3 className="modal-projects-title">{modalProjectsTitle}</h3>
+                    <div className="modal-projects-list">
+                      {service.projects.map((project) => (
+                        <div className="modal-project-item" key={project}>
+                          <CheckCircle2 size={16} />
+                          <span>{project}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {service.projectsDetail && service.projectsDetail.length > 0 && (
+                  <div className="modal-footer">
+                    <Link
+                      className="site-btn"
+                      href={`/servicio/${activeModalService}`}
+                      onClick={() => setActiveModalService(null)}
+                      onPointerMove={moveGlow}
+                    >
+                      <span className="btn-glow" aria-hidden="true" />
+                      <span className="btn-content">
+                        {copy.services.viewProjects} <ArrowRight size={16} />
+                      </span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
