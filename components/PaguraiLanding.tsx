@@ -764,7 +764,7 @@ export default function PaguraiLanding() {
               onPointerMove={moveGlow}
               onClick={() => {
                 setActiveModalBlock(7);
-                setActiveModalService(6);
+                setActiveModalService(7);
               }}
             >
               <div className="block-card-media" aria-hidden="true">
