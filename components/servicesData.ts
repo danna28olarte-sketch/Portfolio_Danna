@@ -274,7 +274,7 @@ export const EN_SERVICES: Service[] = [
         company: "Casa Home",
         title: "GoHighLevel Lead Automation",
         description: "Custom CRM architecture with automated sales pipelines, email sequences, and automatic lead follow-ups.",
-        image: "/assets/images/projects/service5-project0.webp",
+        image: "/assets/images/projects/ghl-logo.webp",
         images: [
           "/assets/images/projects/automatizacion-joseph.webp",
           "/assets/images/projects/workflow-go-high-level.webp",
@@ -566,7 +566,7 @@ export const ES_SERVICES: Service[] = [
         company: "Casa Home",
         title: "Automatización de Leads en GoHighLevel",
         description: "Estructura de CRM personalizada con pipelines automatizados, secuencias de email marketing y seguimiento automático de leads.",
-        image: "/assets/images/projects/service5-project0.webp",
+        image: "/assets/images/projects/ghl-logo.webp",
         images: [
           "/assets/images/projects/automatizacion-joseph.webp",
           "/assets/images/projects/workflow-go-high-level.webp",

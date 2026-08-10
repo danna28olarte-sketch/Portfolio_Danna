@@ -333,7 +333,7 @@ const BLOCK_IMAGES = [
   "/assets/images/projects/Servicio 5.webp",
   "/assets/images/projects/Servicio 6.webp",
   "/assets/images/content/Landing pages.webp",
-  "/assets/images/content/Connected as one system.webp",
+  "/assets/images/projects/service5-project0.webp",
 ];
 
 const PORTFOLIO_IMAGES = [
