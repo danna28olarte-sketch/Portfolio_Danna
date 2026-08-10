@@ -326,36 +326,36 @@ const COPY: Record<Lang, Copy> = {
 };
 
 const BLOCK_IMAGES = [
-  "/assets/images/content/Image creator.png",
-  "/assets/images/content/Video Prodcution.png",
-  "/assets/images/content/Content automation.png",
-  "/assets/images/projects/Servicio 4.png",
-  "/assets/images/projects/Servicio 5.png",
-  "/assets/images/projects/Servicio 6.png",
-  "/assets/images/content/Landing pages.png",
-  "/assets/images/content/Connected as one system.png",
+  "/assets/images/content/Image creator.webp",
+  "/assets/images/content/Video Prodcution.webp",
+  "/assets/images/content/Content automation.webp",
+  "/assets/images/projects/Servicio 4.webp",
+  "/assets/images/projects/Servicio 5.webp",
+  "/assets/images/projects/Servicio 6.webp",
+  "/assets/images/content/Landing pages.webp",
+  "/assets/images/content/Connected as one system.webp",
 ];
 
 const PORTFOLIO_IMAGES = [
-  "/assets/images/content/Fashion_ Hero set AI Image.jpeg",
-  "/assets/images/content/Coffee brand.png",
-  "/assets/images/content/Sneakers Carrusel.png",
-  "/assets/images/content/DTC supplement.png",
-  "/assets/images/content/workflow 12 variations.png",
-  "/assets/images/content/Apparel lifestyle pack.png",
-  "/assets/images/content/Home goods.png",
+  "/assets/images/content/Fashion_ Hero set AI Image.webp",
+  "/assets/images/content/Coffee brand.webp",
+  "/assets/images/content/Sneakers Carrusel.webp",
+  "/assets/images/content/DTC supplement.webp",
+  "/assets/images/content/workflow 12 variations.webp",
+  "/assets/images/content/Apparel lifestyle pack.webp",
+  "/assets/images/content/Home goods.webp",
 ];
 
 const SERVICE_BANNER_IMAGES = [
-  "/assets/images/projects/Banner (IA creation).png",
-  "/assets/images/projects/Banner (Video).png",
-  "/assets/images/projects/Automatización.png",
-  "/assets/images/projects/Banner meta ads.png",
-  "/assets/images/projects/Banner Google Ads.png",
-  "/assets/images/projects/Banner trafficker.png",
-  "/assets/images/projects/Banner (LP).png",
-  "/assets/images/content/Connected as one system.png",
-  "/assets/images/projects/service5-project0.png",
+  "/assets/images/projects/Banner (IA creation).webp",
+  "/assets/images/projects/Banner (Video).webp",
+  "/assets/images/projects/Automatización.webp",
+  "/assets/images/projects/Banner Estrategia Digtal.webp",
+  "/assets/images/projects/Publicidad en redes.webp",
+  "/assets/images/projects/Banner diseño web.webp",
+  "/assets/images/projects/Banner (LP).webp",
+  "/assets/images/projects/Banner CRM.webp",
+  "/assets/images/projects/service5-project0.webp",
 ];
 
 export function moveGlow(e: ReactPointerEvent<HTMLElement>) {
@@ -605,8 +605,8 @@ export default function PaguraiLanding() {
             <Image
               src={
                 theme === "dark"
-                  ? "/assets/images/logo/logo-pagurai-dark.png"
-                  : "/assets/images/logo/logo-pagurai-light.png"
+                  ? "/assets/images/logo/logo-pagurai-dark.webp"
+                  : "/assets/images/logo/logo-pagurai-light.webp"
               }
               alt=""
               width={180}
@@ -687,7 +687,7 @@ export default function PaguraiLanding() {
               <div className="reel-card main-reel">
                 <video
                   className="hero-video"
-                  src="/assets/videos/videopagurai-contentcreation2026.mp4"
+                  src="/assets/videos/videopagurai-contentcreation2026.webm"
                   autoPlay
                   muted
                   loop
@@ -922,28 +922,28 @@ export default function PaguraiLanding() {
         // Define language-specific banner mapping based on activeModalBlock
         if (lang === "es") {
           const esBanners: Record<number, string> = {
-            0: "/assets/images/projects/Banner (IA creation).png",
-            1: "/assets/images/projects/Banner (Video).png",
-            2: "/assets/images/projects/Automatización.png",
-            3: "/assets/images/projects/Banner Estrategia Digtal.png",
-            4: "/assets/images/projects/Publicidad en redes.png",
-            5: "/assets/images/projects/Banner diseño web.png",
-            6: "/assets/images/projects/Banner (LP).png",
-            7: "/assets/images/projects/Banner CRM.png",
+            0: "/assets/images/projects/Banner (IA creation).webp",
+            1: "/assets/images/projects/Banner (Video).webp",
+            2: "/assets/images/projects/Automatización.webp",
+            3: "/assets/images/projects/Banner Estrategia Digtal.webp",
+            4: "/assets/images/projects/Publicidad en redes.webp",
+            5: "/assets/images/projects/Banner diseño web.webp",
+            6: "/assets/images/projects/Banner (LP).webp",
+            7: "/assets/images/projects/Banner CRM.webp",
           };
           if (activeModalBlock !== null && esBanners[activeModalBlock] !== undefined) {
             bannerImage = esBanners[activeModalBlock];
           }
         } else {
           const enBanners: Record<number, string> = {
-            0: "/assets/images/projects/Banner (IA Creation) Ingles.png",
-            1: "/assets/images/projects/Banner Trafficker (Ingles).png",
-            2: "/assets/images/projects/Automatización (Ingles).png",
-            3: "/assets/images/projects/Banner ED (Ingless).png",
-            4: "/assets/images/projects/PD (Ingles)}.png",
-            5: "/assets/images/projects/Banner Diseño Web ingles.png",
-            6: "/assets/images/projects/Banner (LP) Ingles.png",
-            7: "/assets/images/projects/Banner CRM (Ingles).png",
+            0: "/assets/images/projects/Banner (IA Creation) Ingles.webp",
+            1: "/assets/images/projects/Banner(Video) Inglés.webp",
+            2: "/assets/images/projects/Automatización (Ingles).webp",
+            3: "/assets/images/projects/Banner ED (Ingless).webp",
+            4: "/assets/images/projects/PD (Ingles)}.webp",
+            5: "/assets/images/projects/Banner Diseño Web ingles.webp",
+            6: "/assets/images/projects/Banner (LP) Ingles.webp",
+            7: "/assets/images/projects/Banner CRM (Ingles).webp",
           };
           if (activeModalBlock !== null && enBanners[activeModalBlock] !== undefined) {
             bannerImage = enBanners[activeModalBlock];
@@ -992,33 +992,33 @@ export default function PaguraiLanding() {
                         <div style={{ display: "flex", gap: "16px", alignItems: "center", marginTop: "10px", flexWrap: "wrap" }}>
                           {(activeModalService === 5 || activeModalService === 6) ? (
                             <>
-                              <img src="/assets/images/projects/Logo Claude.png" alt="Claude" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (1).png" alt="React" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo Antigravity.png" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo Github.png" alt="Github" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (1).webp" alt="React" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Antigravity.webp" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo Github.webp" alt="Github" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
                             </>
                           ) : activeModalService === 7 ? (
                             <>
-                              <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/N8N.png" alt="N8N" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Zapier.png" alt="Zapier" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Codex.png" alt="Codex" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/N8N.webp" alt="N8N" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Zapier.webp" alt="Zapier" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Codex.webp" alt="Codex" style={{ height: "38px", width: "auto" }} />
                             </>
                           ) : activeModalService === 4 ? (
                             <>
-                              <img src="/assets/images/projects/Logo (Meta).png" alt="Meta" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo (Google).png" alt="Google" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo (Meta).webp" alt="Meta" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Logo (Google).webp" alt="Google" style={{ height: "38px", width: "auto" }} />
                             </>
                           ) : (
                             <>
-                              <img src="/assets/images/projects/Texto.png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (1).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (2).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (3).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (4).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto.webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (1).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (2).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (3).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                              <img src="/assets/images/projects/Texto (4).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
                             </>
                           )}
                         </div>

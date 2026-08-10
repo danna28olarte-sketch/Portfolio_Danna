@@ -185,33 +185,33 @@ export default function ServiceProjectsPage() {
                 <div style={{ display: "flex", gap: "16px", alignItems: "center", marginTop: "12px", flexWrap: "wrap" }}>
                   {(serviceIndex === 5 || serviceIndex === 6) ? (
                     <>
-                      <img src="/assets/images/projects/Logo Claude.png" alt="Claude" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Texto (1).png" alt="React" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo Antigravity.png" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo Github.png" alt="Github" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto (1).webp" alt="React" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo Antigravity.webp" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo Github.webp" alt="Github" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
                     </>
                   ) : serviceIndex === 7 ? (
                     <>
-                      <img src="/assets/images/projects/Logo Hubspot.png" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo GoHighLevel.png" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/N8N.png" alt="N8N" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Zapier.png" alt="Zapier" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Codex.png" alt="Codex" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/N8N.webp" alt="N8N" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Zapier.webp" alt="Zapier" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Codex.webp" alt="Codex" style={{ height: "38px", width: "auto" }} />
                     </>
                   ) : serviceIndex === 4 ? (
                     <>
-                      <img src="/assets/images/projects/Logo (Meta).png" alt="Meta" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Logo (Google).png" alt="Google" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo (Meta).webp" alt="Meta" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Logo (Google).webp" alt="Google" style={{ height: "38px", width: "auto" }} />
                     </>
                   ) : (
                     <>
-                      <img src="/assets/images/projects/Texto.png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Texto (1).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Texto (2).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Texto (3).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                      <img src="/assets/images/projects/Texto (4).png" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto.webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto (1).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto (2).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto (3).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                      <img src="/assets/images/projects/Texto (4).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
                     </>
                   )}
                 </div>

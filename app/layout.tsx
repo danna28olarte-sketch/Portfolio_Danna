@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   description:
     "Sistemas para producir contenido, correr campañas y generar ventas a escala con menos fricción.",
   icons: {
-    icon: "/assets/images/favicon/favicon-dark.png",
-    shortcut: "/assets/images/favicon/favicon-dark.png",
-    apple: "/assets/images/favicon/favicon-light.png",
+    icon: "/assets/images/favicon/favicon-dark.webp",
+    shortcut: "/assets/images/favicon/favicon-dark.webp",
+    apple: "/assets/images/favicon/favicon-light.webp",
   },
   openGraph: {
     title: "Pagurai | AI Visual Systems",

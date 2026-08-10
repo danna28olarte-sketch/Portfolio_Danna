@@ -29,3 +29,7 @@ desktop.ini
 *~
 *.bak
 *.tmp
+
+# Backup assets folder
+assets-backup/
+
