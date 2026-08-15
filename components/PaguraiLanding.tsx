@@ -129,41 +129,37 @@ const COPY: Record<Lang, Copy> = {
       themeDark: "Switch to dark theme",
     },
     hero: {
-      badge: "[CORE_REEL_24]",
-      title: <>Content, automation and <em>AI-powered ads</em>.</>,
-      text: "Systems to produce content, run campaigns, and generate sales at scale with less friction.",
+      badge: "[CREATIVE_AI_26]",
+      title: <>Visual Content & <em>AI for E-commerce</em>.</>,
+      text: "Scalable creative systems producing high-impact, consistent, and visually compelling product & lifestyle content using AI.",
       work: "View work",
       system: "View system",
-      visualAria: "Pagurai visual system",
-      video: "VIDEO · :15",
-      variations: "variations / hour",
+      visualAria: "Danna Olarte visual system",
+      video: "AI · CREATIVE ENGINE",
+      variations: "saved / month",
     },
     proof: [
-      ["STUDIO", "PAGURAI CREATIVE"],
-      ["FOCUS", "AI VISUAL SYSTEMS"],
-      ["BASE", "MIAMI, FL"],
-      ["AVAILABLE", "WORLDWIDE"],
+      ["EXPERIENCE", "5+ YEARS CREATIVE"],
+      ["FOCUS", "AI CONTENT & DESIGN"],
+      ["BASE", "REMOTE / IN-HOUSE"],
+      ["STATUS", "AVAILABLE NOW"],
     ],
     blocks: {
-      eyebrow: "WHAT WE DO · 7 BLOCKS",
-      title: "A toolkit, not a service menu.",
-      text: "Each block works on its own, but together they form a content + sales system.",
+      eyebrow: "WHAT I DO · 3 BLOCKS",
+      title: "Scalable creative systems, not simple assets.",
+      text: "Each block operates independently, but together they form your store's visual engine.",
       items: [
-        "AI content creation",
-        "Video production",
-        "Content automation",
-        "Digital Strategy",
-        "Paid Media",
-        "Website Design",
-        "Sales Funnel",
+        "AI Content Creation",
+        "Audiovisual Production",
+        "Content Automation",
       ],
-      connected: "CRM Management",
+      connected: "Visual Assets & Frameworks",
     },
     services: {
-      eyebrow: "SERVICES · 6 PILLARS",
-      title: <>Six blocks. <em>One system.</em></>,
-      text: "Each pillar works on its own, but they are designed to connect into a content + ads engine for your store.",
-      selected: "Selected projects",
+      eyebrow: "SERVICES · 4 PILLARS",
+      title: <>Four blocks. <em>One system.</em></>,
+      text: "Each block operates independently, but together they form your store's visual engine.",
+      selected: "Implemented projects",
       items: EN_SERVICES,
       viewProjects: "View projects",
       closeModal: "Close",
@@ -183,16 +179,16 @@ const COPY: Record<Lang, Copy> = {
       ],
     },
     cta: {
-      title: "Turn your content into a scalable sales system.",
-      text: "Free diagnosis · 20 minutes · no commitment",
+      title: "Turn your creative concepts into a content system working 24/7.",
+      text: "Free creative audit · 20 minutes · no commitment",
       button: "Get started",
     },
     contact: {
       eyebrow: "CONTACT · LEAD CAPTURE",
-      title: <>Tell us what you sell. <em>We build the system.</em></>,
-      text: "Send us a short brief and we will return a free 20-minute diagnosis: what is missing, what to automate, and what to test first.",
-      email: "hello@pagurai.com",
-      whatsapp: "WhatsApp: +57 ··· ··· ····",
+      title: <>Tell us what you sell. <em>We create the content.</em></>,
+      text: "Send us a short brief and we will return a free 20-minute creative diagnosis: what is missing, what to optimize, and what to produce first.",
+      email: "danna.28.olarte@gmail.com",
+      whatsapp: "WhatsApp: +57 313 612 9197",
       response: "Typical reply within ~24h, business days",
       fields: {
         name: "Name",
@@ -210,14 +206,14 @@ const COPY: Record<Lang, Copy> = {
       placeholders: {
         name: "Your name",
         company: "Your brand name",
-        whatsapp: "+57 ··· ··· ····",
+        whatsapp: "+57 313 612 9197",
         web: "pagurai.com · @brand",
         business: "Skincare DTC, specialty coffee, etc.",
         message: "Tell us what you need...",
       },
-      serviceOptions: ["AI Content", "Video", "Digital Strategy", "Paid Media", "Landing page", "Full system"],
+      serviceOptions: ["AI Content Creation", "Audiovisual Production", "Content Automation"],
     },
-    footer: "HERO → SERVICES → PORTFOLIO → CONTACT",
+    footer: "HERO → ABOUT ME → SERVICES → PORTFOLIO → CONTACT",
   },
   es: {
     nav: {
@@ -233,47 +229,43 @@ const COPY: Record<Lang, Copy> = {
       themeDark: "Cambiar a tema oscuro",
     },
     hero: {
-      badge: "[CORE_REEL_24]",
-      title: <>Contenido, automatización y <em>pauta con IA</em>.</>,
-      text: "Sistemas para producir contenido, correr campañas y generar ventas a escala, con menos fricción.",
+      badge: "[CREATIVE_AI_26]",
+      title: <>Contenido Visual e <em>IA para E-commerce</em>.</>,
+      text: "Sistemas creativos escalables que producen contenido de producto y estilo de vida atractivo, consistente y visualmente impactante.",
       work: "Ver trabajo",
       system: "Ver sistema",
-      visualAria: "Sistema visual Pagurai",
-      video: "VIDEO · :15",
-      variations: "variaciones / hora",
+      visualAria: "Sistema visual de Danna Olarte",
+      video: "IA · MOTOR CREATIVO",
+      variations: "ahorradas / mes",
     },
     proof: [
-      ["STUDIO", "PAGURAI CREATIVE"],
-      ["FOCUS", "AI VISUAL SYSTEMS"],
-      ["BASE", "MIAMI, FL"],
-      ["AVAILABLE", "WORLDWIDE"],
+      ["EXPERIENCIA", "5+ AÑOS CREATIVOS"],
+      ["ENFOQUE", "IA Y DISEÑO VISUAL"],
+      ["BASE", "REMOTE / IN-HOUSE"],
+      ["ESTADO", "DISPONIBLE AHORA"],
     ],
     blocks: {
-      eyebrow: "QUÉ HACEMOS · 7 BLOQUES",
-      title: "Una caja de herramientas, no un menú de servicios.",
-      text: "Cada bloque vive solo, pero juntos forman un sistema de contenido + ventas.",
+      eyebrow: "QUÉ HAGO · 3 BLOQUES",
+      title: "Sistemas creativos escalables, no simples piezas sueltas.",
+      text: "Cada bloque opera de forma independiente, pero juntos forman el motor visual de tu tienda.",
       items: [
-        "Creación de contenido con IA",
+        "Creación de Contenido con IA",
         "Producción audiovisual",
         "Automatización de contenido",
-        "Estrategia Digital",
-        "Publicidad en Redes",
-        "Diseño Web",
-        "Sales Funnel",
       ],
-      connected: "Gestión de CRM",
+      connected: "Activos Visuales & Frameworks",
     },
     services: {
-      eyebrow: "SERVICIOS · 6 PILARES",
-      title: <>Seis bloques. <em>Un sistema.</em></>,
-      text: "Cada pilar funciona por sí solo, pero están pensados para conectarse en un motor de contenido + pauta para tu tienda.",
-      selected: "Proyectos seleccionados",
+      eyebrow: "SERVICIOS · 4 PILARES",
+      title: <>Cuatro bloques. <em>Un sistema.</em></>,
+      text: "Cada pilar funciona por sí solo, pero están pensados para conectarse en un motor visual para tu tienda.",
+      selected: "Proyectos implementados",
       items: ES_SERVICES,
       viewProjects: "Ver proyectos",
       closeModal: "Cerrar",
     },
     portfolio: {
-      eyebrow: "PORTAFOLIO · TRABAJOS SELECCIONADOS",
+      eyebrow: "PORTFOLIO · TRABAJOS SELECCIONADOS",
       title: "Mixed media, sistemas visuales y piezas listas para campaña.",
       all: "Ver todos",
       items: [
@@ -281,22 +273,22 @@ const COPY: Record<Lang, Copy> = {
         ["Marca de café: spot :30", "Video Ad", "wide"],
         ["Tenis: carrusel estático", "Creatividad", "small"],
         ["Suplemento DTC: LP", "Landing", "small"],
-        ["Workflow: 12 variaciones / hora", "Automatización", "wide"],
+        ["Workflow: 12 variaciones / hour", "Automatización", "wide"],
         ["Apparel: pack lifestyle", "Imagen IA", "small"],
         ["Hogar: Reels x6", "Video corto", "small"],
       ],
     },
     cta: {
-      title: "Convierte tu contenido en un sistema de ventas escalable.",
-      text: "Diagnóstico gratis · 20 minutos · sin compromiso",
+      title: "Convierte tus conceptos en un sistema de contenido que trabaje 24/7.",
+      text: "Diagnóstico creativo gratis · 20 minutos · sin compromiso",
       button: "Empezar",
     },
     contact: {
       eyebrow: "CONTACTO · CAPTURA DE LEAD",
-      title: <>Cuéntanos qué vendes. <em>Nosotros armamos el sistema.</em></>,
-      text: "Envíanos un brief corto y te devolvemos un diagnóstico gratis de 20 min: qué falta, qué automatizar y qué probar primero.",
-      email: "hello@pagurai.com",
-      whatsapp: "WhatsApp: +57 ··· ··· ····",
+      title: <>Cuéntanos qué vendes. <em>Nosotros creamos el contenido.</em></>,
+      text: "Envíanos un brief corto y te devolvemos un diagnóstico creativo gratis de 20 min: qué falta, qué optimizar y qué producir primero.",
+      email: "danna.28.olarte@gmail.com",
+      whatsapp: "WhatsApp: +57 313 612 9197",
       response: "Respuesta habitual en ~24h, días hábiles",
       fields: {
         name: "Nombre",
@@ -314,14 +306,14 @@ const COPY: Record<Lang, Copy> = {
       placeholders: {
         name: "Tu nombre",
         company: "Nombre de tu marca",
-        whatsapp: "+57 ··· ··· ····",
+        whatsapp: "+57 313 612 9197",
         web: "pagurai.com · @marca",
         business: "Skincare DTC, café especialidad, etc.",
         message: "Cuéntanos qué necesitas...",
       },
-      serviceOptions: ["Contenido con IA", "Video", "Estrategia Digital", "Publicidad en Redes", "Landing page", "Sistema completo"],
+      serviceOptions: ["Creación de contenido con IA", "Producción audiovisual", "Automatización de contenido"],
     },
-    footer: "HERO → SERVICIOS → PORTAFOLIO → CONTACTO",
+    footer: "HERO → SOBRE MÍ → SERVICIOS → PORTFOLIO → CONTACTO",
   },
 };
 
@@ -329,11 +321,6 @@ const BLOCK_IMAGES = [
   "/assets/images/content/Image creator.webp",
   "/assets/images/content/Video Prodcution.webp",
   "/assets/images/content/Content automation.webp",
-  "/assets/images/projects/Servicio 4.webp",
-  "/assets/images/projects/Servicio 5.webp",
-  "/assets/images/projects/Servicio 6.webp",
-  "/assets/images/content/Landing pages.webp",
-  "/assets/images/projects/service5-project0.webp",
 ];
 
 const PORTFOLIO_IMAGES = [
@@ -346,17 +333,7 @@ const PORTFOLIO_IMAGES = [
   "/assets/images/content/Home goods.webp",
 ];
 
-const SERVICE_BANNER_IMAGES = [
-  "/assets/images/projects/Banner (IA creation).webp",
-  "/assets/images/projects/Banner (Video).webp",
-  "/assets/images/projects/Automatización.webp",
-  "/assets/images/projects/Banner Estrategia Digtal.webp",
-  "/assets/images/projects/Publicidad en redes.webp",
-  "/assets/images/projects/Banner diseño web.webp",
-  "/assets/images/projects/Banner (LP).webp",
-  "/assets/images/projects/Banner CRM.webp",
-  "/assets/images/projects/service5-project0.webp",
-];
+
 
 export function moveGlow(e: ReactPointerEvent<HTMLElement>) {
   const rect = e.currentTarget.getBoundingClientRect();
@@ -531,14 +508,12 @@ export default function PaguraiLanding() {
   useCardGlow();
 
   const blockToServiceMap: Record<number, number> = {
-    0: 0, // AI Content
-    1: 1, // Video
-    2: 2, // Content Automation
-    3: 3, // Meta Ads
-    4: 4, // Google Ads
-    5: 5, // Trafficker Digital
-    6: 6, // Landing Pages
-    7: 7, // CRM Management
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
   };
 
   useEffect(() => {
@@ -601,23 +576,13 @@ export default function PaguraiLanding() {
 
       <header className="site-header">
         <nav className="cyber-nav" aria-label={copy.nav.aria} onPointerMove={moveGlow}>
-          <a className="brand-mark" href="#inicio" aria-label="Pagurai home">
-            <Image
-              src={
-                theme === "dark"
-                  ? "/assets/images/logo/logo-pagurai-dark.webp"
-                  : "/assets/images/logo/logo-pagurai-light.webp"
-              }
-              alt=""
-              width={180}
-              height={54}
-              priority
-            />
-            <span>Pagurai</span>
+          <a className="brand-mark" href="#inicio" aria-label="Danna Olarte home">
+            <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 700, textTransform: "uppercase", color: "var(--accent-color)", fontSize: "20px", letterSpacing: "0.05em" }}>Danna Olarte</span>
           </a>
 
           <div id="primary-navigation" className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a href="#inicio" onClick={() => setMenuOpen(false)}>{copy.nav.home}</a>
+            <a href="#sobre-mi" onClick={() => setMenuOpen(false)}>{lang === "es" ? "Sobre Mí" : "About Me"}</a>
             <a href="#servicios" onClick={() => setMenuOpen(false)}>{copy.nav.services}</a>
             <a href="#portfolio" onClick={() => setMenuOpen(false)}>{copy.nav.work}</a>
             <a href="#contacto" onClick={() => setMenuOpen(false)}>{copy.nav.contact}</a>
@@ -681,42 +646,214 @@ export default function PaguraiLanding() {
               <span />
               <span />
               <span />
-              <strong>AI VISUAL SYSTEMS</strong>
+              <strong>AUTOMATION ENGINE</strong>
             </div>
             <div className="visual-stage">
-              <div className="reel-card main-reel">
-                <video
-                  className="hero-video"
-                  src="/assets/videos/videopagurai-contentcreation2026.webm"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
+              <div className="reel-card main-reel" style={{ background: "rgba(18, 18, 26, 0.6)", overflow: "hidden", position: "relative" }}>
+                <Image
+                  src="/assets/images/projects/WORFLOW-CAR.webp"
+                  alt="Automation Workflow"
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
-                <span>{copy.hero.video}</span>
+                <span style={{ position: "absolute", zIndex: 10, background: "rgba(0,0,0,0.6)", padding: "4px 8px", borderRadius: "4px", left: "12px", bottom: "12px", fontSize: "11px", fontFamily: "var(--font-display)" }}>
+                  {copy.hero.video}
+                </span>
               </div>
               <div className="metric-card">
                 <BarChart3 size={20} />
-                <strong>ROAS</strong>
-                <span>90d sprint</span>
+                <strong>99.8%</strong>
+                <span>{lang === "es" ? "menos errores" : "errors reduced"}</span>
               </div>
               <div className="metric-card pink">
                 <Zap size={20} />
-                <strong>12x</strong>
+                <strong>140h</strong>
                 <span>{copy.hero.variations}</span>
               </div>
             </div>
           </aside>
         </section>
 
-        <section className="proof-strip" aria-label="Pagurai facts">
+        <section className="proof-strip" aria-label="Danna Olarte facts">
           {copy.proof.map(([k, v]) => (
             <div key={k}>
               <span>{k}</span>
               <strong>{v}</strong>
             </div>
           ))}
+        </section>
+
+        {/* ABOUT ME SECTION */}
+        <section className="section-block" id="sobre-mi">
+          <div className="section-head" style={{ marginBottom: "40px" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <span className="eyebrow" style={{ marginBottom: "24px" }}>Danna Olarte</span>
+              <h2 className="about-title-styled" style={{ margin: 0 }}>
+                {lang === "es" ? "SOBRE MÍ" : "ABOUT ME"}
+              </h2>
+            </div>
+          </div>
+
+          <div className="about-grid">
+            {/* Left Column: Portrait Card */}
+            <div className="glow-card about-portrait-card" onPointerMove={moveGlow}>
+              <div className="about-portrait-wrapper">
+                <Image
+                  src="/assets/images/projects/DannaOlarte.webp"
+                  alt="Danna Olarte"
+                  fill
+                  className="about-portrait-img"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            </div>
+
+            {/* Right Column Grid */}
+            <div className="about-cards-right">
+              {/* Top Row */}
+              <div className="about-row-top">
+                {/* Wide description card */}
+                <div className="glow-card about-desc-card" onPointerMove={moveGlow}>
+                  <p className="about-text">
+                    {lang === "es"
+                      ? "Como Diseñadora Creativa de IA, me especializo en transformar ideas en experiencias visuales de alto impacto combinando creatividad, narrativa (storytelling) e inteligencia artificial. Diseño sistemas creativos escalables que ayudan a las marcas a producir contenido atractivo, consistente y visualmente impactante en múltiples plataformas digitales."
+                      : "As an AI Creative Designer, I specialize in transforming ideas into high-impact visual experiences through the combination of creativity, storytelling, and artificial intelligence. I design scalable creative systems that help brands produce engaging, consistent, and visually compelling content across multiple digital platforms."}
+                  </p>
+                </div>
+
+                {/* Experience card */}
+                <div className="glow-card about-exp-card" onPointerMove={moveGlow}>
+                  <div className="exp-bg-grid" />
+                  <div className="exp-content">
+                    <span className="exp-num">2</span>
+                    <span className="exp-label">
+                      {lang === "es" ? "años de experiencia" : "years of experience"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Row */}
+              <div className="about-row-bottom">
+                {/* Visual Assets Card */}
+                <div className="glow-card about-mini-card" onPointerMove={moveGlow}>
+                  <h3 className="about-mini-title">{lang === "es" ? "Activos Visuales" : "Visual Assets"}</h3>
+                  <p className="about-mini-desc">
+                    {lang === "es"
+                      ? "Generación de fotos de producto, lifestyle y variaciones de campaña listas para tus canales."
+                      : "High-impact product, lifestyle and campaign variations ready for your digital channels."}
+                  </p>
+                </div>
+
+                {/* AI Video Card */}
+                <div className="glow-card about-mini-card" onPointerMove={moveGlow}>
+                  <h3 className="about-mini-title">{lang === "es" ? "Video con IA" : "AI Video"}</h3>
+                  <p className="about-mini-desc">
+                    {lang === "es"
+                      ? "Edición y generación de video inteligente optimizado para engagement en TikTok, Reels y Shorts."
+                      : "Smart video editing and generation optimized for engagement on TikTok, Reels and Shorts."}
+                  </p>
+                </div>
+
+                {/* Creative Systems Card */}
+                <div className="glow-card about-mini-card wide-bottom-card" onPointerMove={moveGlow}>
+                  <h3 className="about-mini-title">
+                    {lang === "es" ? "Sistemas Creativos" : "Creative Systems"}
+                  </h3>
+                  <p className="about-mini-desc">
+                    {lang === "es"
+                      ? "Guías de estilo asistidas por IA y frameworks de diseño reutilizables para mantener la coherencia de marca."
+                      : "AI-assisted style guides and reusable design frameworks to maintain total brand consistency."}
+                  </p>
+                  <div style={{ position: "absolute", bottom: "18px", right: "18px", opacity: 0.12 }}>
+                    <Workflow size={32} style={{ color: "var(--accent-color)" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tech stack icons row (Sliding Marquee) */}
+          <div className="about-tech-strip">
+            <div className="marquee-track">
+              {/* Set 1 */}
+              <div className="tech-icon-item" title="Texto 1">
+                <img src="/assets/images/projects/Texto (1).webp" alt="Texto 1" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 2">
+                <img src="/assets/images/projects/Texto (2).webp" alt="Texto 2" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 3">
+                <img src="/assets/images/projects/Texto (3).webp" alt="Texto 3" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 4">
+                <img src="/assets/images/projects/Texto (4).webp" alt="Texto 4" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto">
+                <img src="/assets/images/projects/Texto.webp" alt="Texto" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Claude">
+                <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" className="tech-logo-img" />
+              </div>
+              {/* Set 2 */}
+              <div className="tech-icon-item" title="Texto 1">
+                <img src="/assets/images/projects/Texto (1).webp" alt="Texto 1" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 2">
+                <img src="/assets/images/projects/Texto (2).webp" alt="Texto 2" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 3">
+                <img src="/assets/images/projects/Texto (3).webp" alt="Texto 3" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 4">
+                <img src="/assets/images/projects/Texto (4).webp" alt="Texto 4" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto">
+                <img src="/assets/images/projects/Texto.webp" alt="Texto" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Claude">
+                <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" className="tech-logo-img" />
+              </div>
+              {/* Set 3 */}
+              <div className="tech-icon-item" title="Texto 1">
+                <img src="/assets/images/projects/Texto (1).webp" alt="Texto 1" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 2">
+                <img src="/assets/images/projects/Texto (2).webp" alt="Texto 2" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 3">
+                <img src="/assets/images/projects/Texto (3).webp" alt="Texto 3" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 4">
+                <img src="/assets/images/projects/Texto (4).webp" alt="Texto 4" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto">
+                <img src="/assets/images/projects/Texto.webp" alt="Texto" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Claude">
+                <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" className="tech-logo-img" />
+              </div>
+              {/* Set 4 */}
+              <div className="tech-icon-item" title="Texto 1">
+                <img src="/assets/images/projects/Texto (1).webp" alt="Texto 1" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 2">
+                <img src="/assets/images/projects/Texto (2).webp" alt="Texto 2" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 3">
+                <img src="/assets/images/projects/Texto (3).webp" alt="Texto 3" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto 4">
+                <img src="/assets/images/projects/Texto (4).webp" alt="Texto 4" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Texto">
+                <img src="/assets/images/projects/Texto.webp" alt="Texto" className="tech-logo-img" />
+              </div>
+              <div className="tech-icon-item" title="Claude">
+                <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" className="tech-logo-img" />
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="section-block" id="servicios">
@@ -728,7 +865,7 @@ export default function PaguraiLanding() {
             <p>{copy.blocks.text}</p>
           </div>
 
-          <div className="block-grid">
+          <div className="block-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
             {copy.blocks.items.map((block, index) => {
               return (
                 <article
@@ -753,39 +890,16 @@ export default function PaguraiLanding() {
                   <div className="block-card-scrim" aria-hidden="true" />
                   <div className="block-card-head">
                     <span className="card-num">{String(index + 1).padStart(2, "0")}</span>
-                    <CheckCircle2 size={22} />
+                    {index === 0 && <Sparkles size={22} />}
+                    {index === 1 && <Zap size={22} />}
+                    {index === 2 && <Workflow size={22} />}
                   </div>
                   <h3>{block}</h3>
                 </article>
               );
             })}
-            <article
-              className="glow-card mini block-card connected-card cursor-pointer"
-              onPointerMove={moveGlow}
-              onClick={() => {
-                setActiveModalBlock(7);
-                setActiveModalService(7);
-              }}
-            >
-              <div className="block-card-media" aria-hidden="true">
-                <Image
-                  src={BLOCK_IMAGES[7]}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 980px) 50vw, 25vw"
-                />
-              </div>
-              <div className="block-card-scrim" aria-hidden="true" />
-              <div className="block-card-head">
-                <span className="card-num">08</span>
-                <Workflow size={22} />
-              </div>
-              <h3>{copy.blocks.connected}</h3>
-            </article>
           </div>
         </section>
-
-
 
         <section className="section-block" id="portfolio">
           <div className="section-head">
@@ -807,10 +921,10 @@ export default function PaguraiLanding() {
                 aria-label={title}
                 onPointerMove={moveGlow}
                 onClick={() => {
-                  if (index === 1) {
-                    setActiveModalBlock(1);
-                    setActiveModalService(1); // Service index 1 corresponds to Video and creative production
-                  }
+                  const map = [0, 1, 0, 0, 2, 0, 1];
+                  const svcIndex = map[index] ?? 0;
+                  setActiveModalBlock(svcIndex);
+                  setActiveModalService(svcIndex);
                 }}
               >
                 <div className="portfolio-media">
@@ -844,9 +958,11 @@ export default function PaguraiLanding() {
 
         <section className="contact-section" id="contacto">
           <div className="contact-copy">
-            <span className="eyebrow">{copy.contact.eyebrow}</span>
-            <h2>{copy.contact.title}</h2>
-            <p>{copy.contact.text}</p>
+            <div>
+              <span className="eyebrow">{copy.contact.eyebrow}</span>
+              <h2>{copy.contact.title}</h2>
+              <p>{copy.contact.text}</p>
+            </div>
 
             <div className="contact-cards">
               <div><Mail size={20} /><span>{copy.contact.email}</span></div>
@@ -909,7 +1025,7 @@ export default function PaguraiLanding() {
       </main>
 
       <footer className="site-footer">
-        <span>PAGURAI © 2026</span>
+        <span>DANNA OLARTE © 2026</span>
         <span>{copy.footer}</span>
       </footer>
 
@@ -917,39 +1033,7 @@ export default function PaguraiLanding() {
         let service = copy.services.items[activeModalService];
         if (!service) return null;
         
-        let bannerImage = SERVICE_BANNER_IMAGES[activeModalService];
-        
-        // Define language-specific banner mapping based on activeModalBlock
-        if (lang === "es") {
-          const esBanners: Record<number, string> = {
-            0: "/assets/images/projects/Banner (IA creation).webp",
-            1: "/assets/images/projects/Banner (Video).webp",
-            2: "/assets/images/projects/Automatización.webp",
-            3: "/assets/images/projects/Banner Estrategia Digtal.webp",
-            4: "/assets/images/projects/Publicidad en redes.webp",
-            5: "/assets/images/projects/Banner diseño web.webp",
-            6: "/assets/images/projects/Banner (LP).webp",
-            7: "/assets/images/projects/Banner CRM.webp",
-          };
-          if (activeModalBlock !== null && esBanners[activeModalBlock] !== undefined) {
-            bannerImage = esBanners[activeModalBlock];
-          }
-        } else {
-          const enBanners: Record<number, string> = {
-            0: "/assets/images/projects/Banner (IA Creation) Ingles.webp",
-            1: "/assets/images/projects/Banner(Video) Inglés.webp",
-            2: "/assets/images/projects/Automatización (Ingles).webp",
-            3: "/assets/images/projects/Banner ED (Ingless).webp",
-            4: "/assets/images/projects/PD (Ingles)}.webp",
-            5: "/assets/images/projects/Banner Diseño Web ingles.webp",
-            6: "/assets/images/projects/Banner (LP) Ingles.webp",
-            7: "/assets/images/projects/Banner CRM (Ingles).webp",
-          };
-          if (activeModalBlock !== null && enBanners[activeModalBlock] !== undefined) {
-            bannerImage = enBanners[activeModalBlock];
-          }
-        }
-
+        let bannerImage = service.banner || '';
         let modalProjectsTitle = service.cardTitle || copy.services.selected;
 
         return (
@@ -984,46 +1068,18 @@ export default function PaguraiLanding() {
                   <div className="modal-info">
                     <p className="modal-desc">{service.description}</p>
                     
-                    {((activeModalService === 0 || activeModalService === 1 || activeModalService === 2) || activeModalService === 4 || activeModalService === 5 || activeModalService === 6 || activeModalService === 7) && (
-                      <div style={{ marginTop: "16px", marginBottom: "16px" }}>
-                        <span className="eyebrow" style={{ fontSize: "11px", color: "var(--ink-muted)", letterSpacing: "0.1em" }}>
-                          {lang === "es" ? "HERRAMIENTAS USADAS" : "TOOLS USED"}
-                        </span>
-                        <div style={{ display: "flex", gap: "16px", alignItems: "center", marginTop: "10px", flexWrap: "wrap" }}>
-                          {(activeModalService === 5 || activeModalService === 6) ? (
-                            <>
-                              <img src="/assets/images/projects/Logo Claude.webp" alt="Claude" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (1).webp" alt="React" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo Antigravity.webp" alt="Antigravity" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo Github.webp" alt="Github" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
-                            </>
-                          ) : activeModalService === 7 ? (
-                            <>
-                              <img src="/assets/images/projects/Hubspot(2).webp" alt="Hubspot" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo GoHighLevel.webp" alt="GoHighLevel" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/N8N.webp" alt="N8N" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Zapier.webp" alt="Zapier" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Codex.webp" alt="Codex" style={{ height: "38px", width: "auto" }} />
-                            </>
-                          ) : activeModalService === 4 ? (
-                            <>
-                              <img src="/assets/images/projects/Logo (Meta).webp" alt="Meta" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Logo (Google).webp" alt="Google" style={{ height: "38px", width: "auto" }} />
-                            </>
-                          ) : (
-                            <>
-                              <img src="/assets/images/projects/Texto.webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (1).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (2).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (3).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                              <img src="/assets/images/projects/Texto (4).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
-                            </>
-                          )}
-                        </div>
+                    <div style={{ marginTop: "16px", marginBottom: "16px" }}>
+                      <span className="eyebrow" style={{ fontSize: "11px", color: "var(--ink-muted)", letterSpacing: "0.1em" }}>
+                        {lang === "es" ? "HERRAMIENTAS USADAS" : "TOOLS USED"}
+                      </span>
+                      <div style={{ display: "flex", gap: "16px", alignItems: "center", marginTop: "10px", flexWrap: "wrap" }}>
+                        <img src="/assets/images/projects/Texto.webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                        <img src="/assets/images/projects/Texto (1).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                        <img src="/assets/images/projects/Texto (2).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                        <img src="/assets/images/projects/Texto (3).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
+                        <img src="/assets/images/projects/Texto (4).webp" alt="Tool" style={{ height: "38px", width: "auto" }} />
                       </div>
-                    )}
+                    </div>
 
                     <div className="modal-tags">
                       {service.tags.map((tag) => (
