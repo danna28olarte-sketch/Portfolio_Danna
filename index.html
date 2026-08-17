@@ -1,0 +1,2516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagurai | Dev Hub & Vista Previa</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./Pagurai-websiteV2-2026/public/assets/images/favicon/favicon-dark.webp">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Next.js global styles -->
+  <link rel="stylesheet" href="./Pagurai-websiteV2-2026/app/globals.css">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Google Fonts Variables Override for standard HTML rendering */
+    :root {
+      --font-display: 'Oswald', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    /* Next.js Image fill layout emulator to prevent misaligned/overflowing images */
+    .block-card-media img,
+    .portfolio-media img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+    }
+
+    .modal-banner img {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+
+    /* Project Cards clean layout (Text above image) */
+    .project-card {
+      padding: 28px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      min-height: 450px !important;
+      background: rgba(18, 18, 26, 0.72) !important;
+    }
+
+    @media (max-width: 640px) {
+      .project-card {
+        padding: 20px !important;
+        min-height: auto !important;
+      }
+    }
+
+    .project-card-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin-top: 16px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .project-card-image-wrapper img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out), filter 0.4s ease;
+      filter: saturate(0.85) contrast(0.98) brightness(0.85);
+    }
+    
+    .project-card:hover .project-card-image-wrapper img {
+      transform: scale(1.05);
+      filter: saturate(1) contrast(1.02) brightness(1);
+    }
+
+    /* Local Dev Hub Header Panel Styling */
+    .vw-dev-hub-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #06060b;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      font-family: 'Outfit', sans-serif;
+      color: #f3f4f6;
+      gap: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .theme-light .vw-dev-hub-header {
+      background: #ffffff;
+      border-bottom: 1.5px solid rgba(16, 24, 39, 0.08);
+      color: #101827;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .hub-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hub-badge {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #0098ff;
+      border: 1px solid rgba(0, 152, 255, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0, 152, 255, 0.06);
+    }
+
+    .hub-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-dot.checking {
+      background: #ffaa00;
+      box-shadow: 0 0 10px #ffaa00;
+      animation: pulse 1.5s infinite;
+    }
+
+    .status-dot.active {
+      background: #00cc66;
+      box-shadow: 0 0 10px #00cc66;
+    }
+
+    .status-dot.inactive {
+      background: #8e8e93;
+    }
+
+    .hub-tabs {
+      display: flex;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      padding: 3px;
+    }
+
+    .theme-light .hub-tabs {
+      background: rgba(16, 24, 39, 0.04);
+      border-color: rgba(16, 24, 39, 0.08);
+    }
+
+    .hub-tab-btn {
+      background: transparent;
+      border: 0;
+      color: rgba(243, 244, 246, 0.6);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .theme-light .hub-tab-btn {
+      color: rgba(16, 24, 39, 0.6);
+    }
+
+    .hub-tab-btn:hover {
+      color: #fff;
+    }
+
+    .theme-light .hub-tab-btn:hover {
+      color: #101827;
+    }
+
+    .hub-tab-btn.active {
+      background: #0098ff;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 152, 255, 0.3);
+    }
+
+    .hub-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hub-command {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 5px 8px 5px 12px;
+      gap: 8px;
+    }
+
+    .theme-light .hub-command {
+      background: rgba(16, 24, 39, 0.05);
+      border-color: rgba(16, 24, 39, 0.1);
+    }
+
+    .hub-command code {
+      font-family: monospace;
+      font-size: 12px;
+      color: #00ffaa;
+      font-weight: bold;
+    }
+
+    .theme-light .hub-command code {
+      color: #008855;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 0;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .theme-light .copy-btn {
+      color: rgba(16, 24, 39, 0.4);
+    }
+
+    .copy-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-light .copy-btn:hover {
+      color: #101827;
+      background: rgba(16, 24, 39, 0.08);
+    }
+
+    .hub-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s;
+    }
+
+    .theme-light .hub-link {
+      color: #101827;
+      border-color: rgba(16, 24, 39, 0.1);
+      background: rgba(16, 24, 39, 0.02);
+    }
+
+    .hub-link:hover {
+      color: #fff;
+      border-color: #0098ff;
+      background: rgba(0, 152, 255, 0.15);
+    }
+
+    .theme-light .hub-link:hover {
+      color: #006ed6;
+      border-color: #006ed6;
+      background: rgba(0, 110, 214, 0.05);
+    }
+
+    /* Live Preview Iframe Container */
+    #live-iframe-container {
+      display: none;
+      width: 100%;
+      height: calc(100vh - 63px);
+      background: #0a0a0f;
+    }
+
+    #live-iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Language Visibility classes */
+    body.lang-en .lang-es {
+      display: none !important;
+    }
+    body.lang-es .lang-en {
+      display: none !important;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    /* Custom overrides for local index rendering */
+    .app-shell {
+      position: relative;
+      min-height: calc(100vh - 63px);
+    }
+
+    .hero-video {
+      object-fit: cover;
+    }
+
+    /* Extra visual fixes for static layout loading */
+    .brand-mark img {
+      max-height: 48px;
+    }
+
+    /* Thumbnail and image scrollbar styling */
+    #gallery-thumbnails-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    #gallery-thumbnails-container::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.2);
+    }
+    #gallery-thumbnails-container::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+    }
+    #gallery-thumbnails-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .active-image-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    .active-image-container::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.3);
+    }
+    .active-image-container::-webkit-scrollbar-thumb {
+      background: rgba(0, 152, 255, 0.4);
+      border-radius: 3px;
+    }
+    .active-image-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 152, 255, 0.7);
+    }
+
+    /* ABOUT ME SECTION STYLING */
+    .about-title-styled {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 0.9;
+      color: var(--ink) !important;
+      display: inline-block;
+      margin: 10px 0 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .about-portrait-card {
+      height: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: rgba(18, 18, 26, 0.72);
+      padding: 0;
+      position: relative;
+    }
+
+    .about-portrait-wrapper {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+
+    .about-portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      transition: filter 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+
+    /* Glow border effect on hover */
+    .about-portrait-card::before,
+    .about-desc-card::before,
+    .about-exp-card::before,
+    .about-mini-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(
+        220px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(var(--accent-rgb), 0.4),
+        transparent 70%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    /* Glow background illumination on hover */
+    .about-portrait-card::after,
+    .about-desc-card::after,
+    .about-exp-card::after,
+    .about-mini-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        350px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(var(--accent-rgb), 0.08),
+        transparent 80%
+      );
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .about-portrait-card:hover::before,
+    .about-desc-card:hover::before,
+    .about-exp-card:hover::before,
+    .about-mini-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-portrait-card:hover::after,
+    .about-desc-card:hover::after,
+    .about-exp-card:hover::after,
+    .about-mini-card:hover::after {
+      opacity: 1;
+    }
+
+    .about-portrait-card:hover .about-portrait-img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    .about-cards-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .about-row-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    .about-desc-card {
+      background: rgba(18, 18, 26, 0.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .theme-light .about-desc-card,
+    .theme-light .about-portrait-card,
+    .theme-light .about-exp-card,
+    .theme-light .about-mini-card {
+      background: var(--bg-card);
+      border-color: var(--line);
+    }
+
+    .card-corner-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      opacity: 0.6;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      margin: 0;
+    }
+
+    .about-exp-card {
+      background: rgba(18, 18, 26, 0.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .exp-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 16px 16px;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    
+    .theme-light .exp-bg-grid {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    }
+
+    .exp-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .exp-num {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 5.5vw, 5.2rem);
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+    
+    .theme-light .exp-num {
+      color: var(--ink);
+    }
+
+    .exp-label {
+      font-size: 11px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+
+    .about-row-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.3fr;
+      gap: 24px;
+    }
+
+    .about-mini-card {
+      background: rgba(18, 18, 26, 0.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .about-mini-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-style: italic;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.03em;
+    }
+    
+    .theme-light .about-mini-title {
+      color: var(--ink);
+    }
+
+    .about-mini-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      margin: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mini-card-icon-bg {
+      position: absolute;
+      bottom: -15px;
+      right: -10px;
+      font-family: var(--font-display);
+      font-size: 80px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.024);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    
+    .theme-light .mini-card-icon-bg {
+      color: rgba(0, 0, 0, 0.02);
+    }
+
+    .about-tech-strip {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      margin-top: 36px;
+      padding: 24px 0 !important;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-25%); }
+    }
+
+    .tech-icon-item {
+      flex-shrink: 0;
+      padding: 0 30px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    
+    .tech-icon-item:hover {
+      opacity: 1;
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 991px) {
+      .about-grid {
+        grid-template-columns: 260px 1fr;
+      }
+      .about-row-bottom {
+        grid-template-columns: 1fr 1fr;
+      }
+      .wide-bottom-card {
+        grid-column: span 2;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-portrait-card {
+        min-height: 380px;
+      }
+      .about-row-top {
+        grid-template-columns: 1fr;
+      }
+      .about-row-bottom {
+        grid-template-columns: 1fr;
+      }
+      .wide-bottom-card {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body class="lang-es">
+
+  <!-- 1. DEV HUB CONTROL PANEL -->
+  <div class="vw-dev-hub-header">
+    <div class="hub-left">
+      <span class="hub-badge">PAGURAI DEV HUB</span>
+      <span class="hub-status" id="dev-status">
+        <span class="status-dot checking"></span>
+        <span class="status-text lang-es">Verificando Next.js...</span>
+        <span class="status-text lang-en">Checking Next.js...</span>
+      </span>
+    </div>
+    
+    <div class="hub-center">
+      <div class="hub-tabs">
+        <button class="hub-tab-btn active" id="tab-static" onclick="switchMode('static')">
+          <span class="lang-es">Vista Estática (Rápida)</span>
+          <span class="lang-en">Static View (Fast)</span>
+        </button>
+        <button class="hub-tab-btn" id="tab-live" onclick="switchMode('live')">
+          <span class="lang-es">Vista en Vivo (Next.js)</span>
+          <span class="lang-en">Live View (Next.js)</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hub-right">
+      <div class="hub-command" title="Ejecuta esto en tu terminal dentro de la carpeta del proyecto">
+        <code>npm run dev</code>
+        <button class="copy-btn" onclick="copyCommand()" title="Copiar comando">
+          <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+        </button>
+      </div>
+      <a href="http://localhost:3000" target="_blank" class="hub-link">
+        <span class="lang-es">Abrir localhost:3000</span>
+        <span class="lang-en">Open localhost:3000</span>
+        <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. LIVE VIEW CONTAINER (IFRAME) -->
+  <div id="live-iframe-container">
+    <iframe id="dev-iframe" src="about:blank"></iframe>
+  </div>
+
+  <!-- 3. STATIC PREVIEW SHELL (FULL REPLICA) -->
+  <div class="app-shell theme-dark" id="app-shell">
+    
+    <!-- Matrix Dot Background Canvas -->
+    <div class="vw-dot-bg" aria-hidden="true">
+      <canvas id="matrix-canvas"></canvas>
+      <div class="vw-dot-fade"></div>
+    </div>
+    <div class="bg-cover" aria-hidden="true"></div>
+    <div class="bg-glows" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <nav class="cyber-nav" aria-label="Navegación principal" onpointermove="moveGlow(event)">
+        <a class="brand-mark" href="#inicio" aria-label="Danna Olarte home">
+          <span style="font-family: var(--font-display); font-style: italic; font-weight: 700; text-transform: uppercase; color: var(--accent-color); font-size: 20px; letter-spacing: 0.05em;">Danna Olarte</span>
+        </a>
+
+        <div id="primary-navigation" class="nav-links">
+          <a href="#inicio">
+            <span class="lang-es">Inicio</span>
+            <span class="lang-en">Home</span>
+          </a>
+          <a href="#sobre-mi">
+            <span class="lang-es">Sobre Mí</span>
+            <span class="lang-en">About Me</span>
+          </a>
+          <a href="#servicios">
+            <span class="lang-es">Servicios</span>
+            <span class="lang-en">Services</span>
+          </a>
+          <a href="#portfolio">
+            <span class="lang-es">Trabajo</span>
+            <span class="lang-en">Work</span>
+          </a>
+          <a href="#contacto">
+            <span class="lang-es">Contacto</span>
+            <span class="lang-en">Contact</span>
+          </a>
+        </div>
+
+        <div class="nav-controls" aria-label="Controles de idioma y tema">
+          <div class="language-toggle" aria-label="Selector de idioma">
+            <button id="lang-btn-en" type="button" onclick="changeLanguage('en')">EN</button>
+            <button id="lang-btn-es" class="active" type="button" onclick="changeLanguage('es')">ES</button>
+          </div>
+
+          <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Cambiar tema">
+            <i id="theme-toggle-icon" data-lucide="sun" style="width: 18px; height: 18px;"></i>
+          </button>
+        </div>
+
+        <a class="site-btn secondary" href="#contacto" onpointermove="moveGlow(event)">
+          <span class="btn-glow" aria-hidden="true"></span>
+          <span class="btn-content">
+            <span class="lang-es">Diagnóstico</span>
+            <span class="lang-en">Diagnosis</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px; margin-left: 4px;"></i>
+          </span>
+        </a>
+
+        <button class="menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
+          <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="inicio">
+        <div class="hero-copy">
+          <span class="section-badge">[CREATIVE_AI_26]</span>
+          
+          <h1 class="lang-es">Contenido Visual e <em>IA para E-commerce</em>.</h1>
+          <h1 class="lang-en">Visual Content & <em>AI for E-commerce</em>.</h1>
+          
+          <p class="lang-es">Sistemas creativos escalables que producen contenido de producto y estilo de vida atractivo, consistente y visualmente impactante.</p>
+          <p class="lang-en">Scalable creative systems producing high-impact, consistent, and visually compelling product & lifestyle content using AI.</p>
+          
+          <div class="hero-actions">
+            <a class="site-btn primary" href="#portfolio" onpointermove="moveGlow(event)">
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="btn-content">
+                <span class="lang-es">Ver trabajo</span>
+                <span class="lang-en">View work</span>
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px; margin-left: 4px;"></i>
+              </span>
+            </a>
+            <a class="site-btn ghost" href="#servicios" onpointermove="moveGlow(event)">
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="btn-content">
+                <i data-lucide="play" style="width: 17px; height: 17px; margin-right: 6px;"></i>
+                <span class="lang-es">Ver sistema</span>
+                <span class="lang-en">View system</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="Visual system preview">
+          <div class="visual-toolbar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>AUTOMATION ENGINE</strong>
+          </div>
+          <div class="visual-stage">
+            <div class="reel-card main-reel" style="background: rgba(18, 18, 26, 0.6); overflow: hidden;">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/WORFLOW-CAR.webp" alt="Automation Workflow" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+              <span style="background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 4px;">Automatización Magnific</span>
+            </div>
+            <div class="metric-card">
+              <i data-lucide="bar-chart-3" style="width: 20px; height: 20px;"></i>
+              <strong>99.8%</strong>
+              <span class="lang-es">menos errores</span>
+              <span class="lang-en">errors reduced</span>
+            </div>
+            <div class="metric-card pink">
+              <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+              <strong>140h</strong>
+              <span class="lang-es">ahorradas / mes</span>
+              <span class="lang-en">saved / month</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- PROOF STRIP -->
+      <section class="proof-strip" aria-label="Pagurai facts">
+        <div>
+          <span>STUDIO</span>
+          <strong>PAGURAI CREATIVE</strong>
+        </div>
+        <div>
+          <span>FOCUS</span>
+          <strong>AI VISUAL SYSTEMS</strong>
+        </div>
+        <div>
+          <span>BASE</span>
+          <strong>MIAMI, FL</strong>
+        </div>
+        <div>
+          <span>AVAILABLE</span>
+          <strong>WORLDWIDE</strong>
+        </div>
+      </section>
+
+      <!-- ABOUT ME SECTION -->
+      <section class="section-block" id="sobre-mi">
+        <div class="section-head" style="margin-bottom: 40px;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <span class="eyebrow" style="margin-bottom: 24px;">Danna Olarte</span>
+            <h2 class="about-title-styled" style="margin: 0;">
+              <span class="lang-es">SOBRE MÍ</span>
+              <span class="lang-en">ABOUT ME</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left Column: Portrait Card -->
+          <div class="glow-card about-portrait-card">
+            <div class="about-portrait-wrapper">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/DannaOlarte.webp" alt="Danna Olarte" class="about-portrait-img">
+            </div>
+          </div>
+
+          <!-- Right Column Grid -->
+          <div class="about-cards-right">
+            <!-- Top Row -->
+            <div class="about-row-top">
+              <!-- Wide description card -->
+              <div class="glow-card about-desc-card">
+                <p class="lang-es about-text">
+                  Como Diseñadora Creativa de IA, me especializo en transformar ideas en experiencias visuales de alto impacto combinando creatividad, narrativa (storytelling) e inteligencia artificial. Diseño sistemas creativos escalables que ayudan a las marcas a producir contenido atractivo, consistente y visualmente impactante en múltiples plataformas digitales.
+                </p>
+                <p class="lang-en about-text">
+                  As an AI Creative Designer, I specialize in transforming ideas into high-impact visual experiences through the combination of creativity, storytelling, and artificial intelligence. I design scalable creative systems that help brands produce engaging, consistent, and visually compelling content across multiple digital platforms.
+                </p>
+              </div>
+
+              <!-- Experience card -->
+              <div class="glow-card about-exp-card">
+                <div class="exp-bg-grid"></div>
+                <div class="exp-content">
+                  <span class="exp-num">2</span>
+                  <span class="lang-es exp-label">años de experiencia</span>
+                  <span class="lang-en exp-label">years of experience</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="about-row-bottom">
+              <!-- Visual Assets Card -->
+              <div class="glow-card about-mini-card">
+                <h3 class="about-mini-title">Activos Visuales</h3>
+                <p class="lang-es about-mini-desc">Generación de fotos de producto, lifestyle y variaciones de campaña listas para tus canales.</p>
+                <p class="lang-en about-mini-desc">High-impact product, lifestyle and campaign variations ready for your digital channels.</p>
+              </div>
+
+              <!-- AI Video Card -->
+              <div class="glow-card about-mini-card">
+                <h3 class="about-mini-title">Video con IA</h3>
+                <p class="lang-es about-mini-desc">Edición y generación de video inteligente optimizado para engagement en TikTok, Reels y Shorts.</p>
+                <p class="lang-en about-mini-desc">Smart video editing and generation optimized for engagement on TikTok, Reels and Shorts.</p>
+              </div>
+
+              <!-- Creative Systems Card -->
+              <div class="glow-card about-mini-card wide-bottom-card">
+                <h3 class="about-mini-title">Sistemas Creativos</h3>
+                <p class="lang-es about-mini-desc">Guías de estilo asistidas por IA y frameworks de diseño reutilizables para mantener la coherencia de marca.</p>
+                <p class="lang-en about-mini-desc">AI-assisted style guides and reusable design frameworks to maintain total brand consistency.</p>
+                <div style="position: absolute; bottom: 18px; right: 18px; opacity: 0.12;">
+                  <i data-lucide="workflow" style="width: 32px; height: 32px; color: var(--accent-color);"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech stack icons row (Sliding Marquee) -->
+        <div class="about-tech-strip">
+          <div class="marquee-track">
+            <!-- Set 1 -->
+            <div class="tech-icon-item" title="Texto 1">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Texto 1" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 2">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Texto 2" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 3">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Texto 3" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 4">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Texto 4" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Texto" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Claude">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Logo Claude.webp" alt="Claude" class="tech-logo-img">
+            </div>
+            <!-- Set 2 -->
+            <div class="tech-icon-item" title="Texto 1">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Texto 1" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 2">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Texto 2" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 3">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Texto 3" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 4">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Texto 4" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Texto" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Claude">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Logo Claude.webp" alt="Claude" class="tech-logo-img">
+            </div>
+            <!-- Set 3 -->
+            <div class="tech-icon-item" title="Texto 1">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Texto 1" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 2">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Texto 2" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 3">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Texto 3" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 4">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Texto 4" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Texto" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Claude">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Logo Claude.webp" alt="Claude" class="tech-logo-img">
+            </div>
+            <!-- Set 4 -->
+            <div class="tech-icon-item" title="Texto 1">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Texto 1" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 2">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Texto 2" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 3">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Texto 3" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto 4">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Texto 4" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Texto">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Texto" class="tech-logo-img">
+            </div>
+            <div class="tech-icon-item" title="Claude">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Logo Claude.webp" alt="Claude" class="tech-logo-img">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES BLOCKS SECTION -->
+      <section class="section-block" id="servicios">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">
+              <span class="lang-es">QUÉ HAGO · 3 BLOQUES</span>
+              <span class="lang-en">WHAT I DO · 3 BLOCKS</span>
+            </span>
+            <h2 class="lang-es">Sistemas creativos escalables, no simples piezas sueltas.</h2>
+            <h2 class="lang-en">Scalable creative systems, not simple assets.</h2>
+          </div>
+          <p class="lang-es">Cada bloque opera de forma independiente, pero juntos forman el motor visual de tu tienda.</p>
+          <p class="lang-en">Each block operates independently, but together they form your store's visual engine.</p>
+        </div>
+
+        <div class="block-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <!-- Card 1 -->
+          <article class="glow-card mini block-card cursor-pointer" tabindex="0" onclick="openServiceModal(0)" onpointermove="moveGlow(event)">
+            <div class="block-card-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Image creator.webp" alt="AI Content Creation">
+            </div>
+            <div class="block-card-scrim"></div>
+            <div class="block-card-head">
+              <span class="card-num">01</span>
+              <i data-lucide="sparkles" style="width: 22px; height: 22px;"></i>
+            </div>
+            <h3>
+              <span class="lang-es">Creación de Contenido con IA</span>
+              <span class="lang-en">AI Content Creation</span>
+            </h3>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="glow-card mini block-card cursor-pointer" tabindex="0" onclick="openServiceModal(1)" onpointermove="moveGlow(event)">
+            <div class="block-card-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Video Prodcution.webp" alt="Audiovisual Production">
+            </div>
+            <div class="block-card-scrim"></div>
+            <div class="block-card-head">
+              <span class="card-num">02</span>
+              <i data-lucide="zap" style="width: 22px; height: 22px;"></i>
+            </div>
+            <h3>
+              <span class="lang-es">Producción audiovisual</span>
+              <span class="lang-en">Audiovisual Production</span>
+            </h3>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="glow-card mini block-card cursor-pointer" tabindex="0" onclick="openServiceModal(2)" onpointermove="moveGlow(event)">
+            <div class="block-card-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Content automation.webp" alt="Content Automation">
+            </div>
+            <div class="block-card-scrim"></div>
+            <div class="block-card-head">
+              <span class="card-num">03</span>
+              <i data-lucide="workflow" style="width: 22px; height: 22px;"></i>
+            </div>
+            <h3>
+              <span class="lang-es">Automatización de contenido</span>
+              <span class="lang-en">Content Automation</span>
+            </h3>
+          </article>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SECTION -->
+      <section class="section-block" id="portfolio">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">
+              <span class="lang-es">PORTAFOLIO · TRABAJOS SELECCIONADOS</span>
+              <span class="lang-en">PORTFOLIO · SELECTED WORK</span>
+            </span>
+            <h2 class="lang-es">Mixed media, sistemas visuales y piezas listas para campaña.</h2>
+            <h2 class="lang-en">Mixed media, visual systems, and campaign-ready assets.</h2>
+          </div>
+          <a class="site-btn secondary" href="#contacto" onpointermove="moveGlow(event)">
+            <span class="btn-glow" aria-hidden="true"></span>
+            <span class="btn-content">
+              <span class="lang-es">Ver todos</span>
+              <span class="lang-en">View all</span>
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px; margin-left: 4px;"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Item 1 -->
+          <article class="portfolio-card large cursor-pointer" tabindex="0" onclick="openServiceModal(0)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Fashion_ Hero set AI Image.webp" alt="Skincare">
+              <span>01</span>
+            </div>
+            <div>
+              <strong class="lang-es">Skincare: Hero set</strong>
+              <strong class="lang-en">Skincare: Hero set</strong>
+              <em class="lang-es">Imagen IA</em>
+              <em class="lang-en">AI Image</em>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="portfolio-card wide cursor-pointer" tabindex="0" onclick="openServiceModal(1)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Coffee brand.webp" alt="Coffee Spot">
+              <span>02</span>
+            </div>
+            <div>
+              <strong class="lang-es">Marca de café: spot :30</strong>
+              <strong class="lang-en">Coffee brand: :30 spot</strong>
+              <em class="lang-es">Video Ad</em>
+              <em class="lang-en">Video Ad</em>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="portfolio-card small cursor-pointer" tabindex="0" onclick="openServiceModal(0)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Sneakers Carrusel.webp" alt="Sneakers Carousel">
+              <span>03</span>
+            </div>
+            <div>
+              <strong class="lang-es">Tenis: carrusel estático</strong>
+              <strong class="lang-en">Sneakers: static carousel</strong>
+              <em class="lang-es">Creatividad</em>
+              <em class="lang-en">Creative</em>
+            </div>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="portfolio-card small cursor-pointer" tabindex="0" onclick="openServiceModal(0)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/DTC supplement.webp" alt="DTC Supplement LP">
+              <span>04</span>
+            </div>
+            <div>
+              <strong class="lang-es">Suplemento DTC: LP</strong>
+              <strong class="lang-en">DTC supplement: LP</strong>
+              <em class="lang-es">Landing</em>
+              <em class="lang-en">Landing</em>
+            </div>
+          </article>
+
+          <!-- Item 5 -->
+          <article class="portfolio-card wide cursor-pointer" tabindex="0" onclick="openServiceModal(2)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/workflow 12 variations.webp" alt="Workflow automation">
+              <span>05</span>
+            </div>
+            <div>
+              <strong class="lang-es">Workflow: 12 variaciones / hora</strong>
+              <strong class="lang-en">Workflow: 12 variations / hour</strong>
+              <em class="lang-es">Automatización</em>
+              <em class="lang-en">Automation</em>
+            </div>
+          </article>
+
+          <!-- Item 6 -->
+          <article class="portfolio-card small cursor-pointer" tabindex="0" onclick="openServiceModal(0)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Apparel lifestyle pack.webp" alt="Apparel lifestyle pack">
+              <span>06</span>
+            </div>
+            <div>
+              <strong class="lang-es">Apparel: pack lifestyle</strong>
+              <strong class="lang-en">Apparel: lifestyle pack</strong>
+              <em class="lang-es">Imagen IA</em>
+              <em class="lang-en">AI Image</em>
+            </div>
+          </article>
+
+          <!-- Item 7 -->
+          <article class="portfolio-card small cursor-pointer" tabindex="0" onclick="openServiceModal(1)" onpointermove="moveGlow(event)">
+            <div class="portfolio-media">
+              <img src="./Pagurai-websiteV2-2026/public/assets/images/content/Home goods.webp" alt="Home goods reels">
+              <span>07</span>
+            </div>
+            <div>
+              <strong class="lang-es">Hogar: Reels x6</strong>
+              <strong class="lang-en">Home goods: Reels x6</strong>
+              <em class="lang-es">Video corto</em>
+              <em class="lang-en">Short video</em>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA BAND -->
+      <section class="cta-band">
+        <div>
+          <h2 class="lang-es">Convierte tus conceptos en un sistema de contenido que trabaje 24/7.</h2>
+          <h2 class="lang-en">Turn your creative concepts into a content system working 24/7.</h2>
+          <p class="lang-es">Diagnóstico creativo gratis · 20 minutos · sin compromiso</p>
+          <p class="lang-en">Free creative audit · 20 minutes · no commitment</p>
+        </div>
+        
+        <a class="site-btn primary" href="#contacto" onpointermove="moveGlow(event)">
+          <span class="btn-glow" aria-hidden="true"></span>
+          <span class="btn-content">
+            <span class="lang-es">Empezar</span>
+            <span class="lang-en">Get started</span>
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px; margin-left: 4px;"></i>
+          </span>
+        </a>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="contact-section" id="contacto">
+        <div class="contact-copy">
+          <div>
+            <span class="eyebrow">
+              <span class="lang-es">CONTACTO · CAPTURA DE LEAD</span>
+              <span class="lang-en">CONTACT · LEAD CAPTURE</span>
+            </span>
+            <h2 class="lang-es">Cuéntanos qué vendes. <em>Nosotros creamos el contenido.</em></h2>
+            <h2 class="lang-en">Tell us what you sell. <em>We create the content.</em></h2>
+            
+            <p class="lang-es">Envíanos un brief corto y te devolvemos un diagnóstico creativo gratis de 20 min: qué falta, qué optimizar y qué producir primero.</p>
+            <p class="lang-en">Send us a short brief and we will return a free 20-minute creative diagnosis: what is missing, what to optimize, and what to produce first.</p>
+          </div>
+
+          <div class="contact-cards">
+            <div>
+              <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--accent-color);"></i>
+              <span>danna.28.olarte@gmail.com</span>
+            </div>
+            <div>
+              <i data-lucide="message-circle" style="width: 20px; height: 20px; color: var(--accent-color);"></i>
+              <span class="lang-es">WhatsApp: +57 313 612 9197</span>
+              <span class="lang-en">WhatsApp: +57 313 612 9197</span>
+            </div>
+            <div>
+              <i data-lucide="clock" style="width: 20px; height: 20px; color: var(--accent-color);"></i>
+              <span class="lang-es">Respuesta habitual en ~24h, días hábiles</span>
+              <span class="lang-en">Typical reply within ~24h, business days</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="lead-form" onsubmit="handleFormSubmit(event)">
+          <label>
+            <span class="lang-es">Nombre *</span>
+            <span class="lang-en">Name *</span>
+            <input required type="text" id="form-name" placeholder="Tu nombre">
+          </label>
+          <label>
+            <span class="lang-es">Empresa *</span>
+            <span class="lang-en">Company *</span>
+            <input required type="text" id="form-company" placeholder="Nombre de tu marca">
+          </label>
+          <label>
+            <span class="lang-es">WhatsApp *</span>
+            <span class="lang-en">WhatsApp *</span>
+            <input required type="tel" id="form-whatsapp" placeholder="+57---">
+          </label>
+          <label>
+            <span class="lang-es">Sitio web / Instagram</span>
+            <span class="lang-en">Website / Instagram</span>
+            <input type="text" id="form-web" placeholder="pagurai.com · @marca">
+          </label>
+          <label class="full">
+            <span class="lang-es">Tipo de negocio</span>
+            <span class="lang-en">Type of business</span>
+            <input type="text" id="form-business" placeholder="Skincare DTC, café especialidad, etc.">
+          </label>
+
+          <div class="form-services full">
+            <span>
+              <span class="lang-es">Servicio que necesitas <small>(multi-selección)</small></span>
+              <span class="lang-en">Service needed <small>(multi-select)</small></span>
+            </span>
+            <div id="service-options-container">
+              <!-- Service options loaded dynamically via JS -->
+            </div>
+          </div>
+
+          <label class="full">
+            <span class="lang-es">Mensaje</span>
+            <span class="lang-en">Message</span>
+            <textarea id="form-message" placeholder="Cuéntanos qué necesitas..."></textarea>
+          </label>
+
+          <div class="form-foot full">
+            <small id="form-message-info">
+              <span class="lang-es">Sin spam. Nunca.</span>
+              <span class="lang-en">No spam. Ever.</span>
+            </small>
+            <button class="submit-btn" type="submit">
+              <span>
+                <span class="lang-es">Solicitar diagnóstico</span>
+                <span class="lang-en">Request diagnosis</span>
+              </span>
+              <i data-lucide="arrow-right" style="width: 17px; height: 17px; margin-left: 6px;"></i>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <span>PAGURAI © 2026</span>
+      <span>HERO → SERVICIOS → PORTAFOLIO → CONTACTO</span>
+    </footer>
+
+    <!-- Service Detail Overview Modal -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeServiceModalOnBackdrop(event)" style="display: none;">
+      <div id="modal-container" class="modal-container" onpointermove="moveGlow(event)">
+        <button type="button" class="modal-close-btn" onclick="closeServiceModal()" aria-label="Close">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+        
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="modal-number" id="modal-number-text">01</span>
+            <h2 class="modal-title" id="modal-title-text">Creación de contenido con IA</h2>
+          </div>
+
+          <div class="modal-banner" style="height: auto !important; aspect-ratio: auto !important; overflow: visible !important;" onpointermove="moveGlow(event)">
+            <div class="modal-banner-scrim"></div>
+            <img src="" alt="Banner" id="modal-banner-img" class="modal-banner-image" style="position: relative !important; display: block !important; width: 100% !important; height: auto !important; object-fit: contain !important;">
+          </div>
+
+          <div class="modal-body">
+            <div class="modal-info">
+              <p class="modal-desc" id="modal-desc-text">Imágenes de producto, lifestyle y creatividades on-brand a escala, en días, no semanas.</p>
+              <div class="modal-tags" id="modal-tags-container">
+                <!-- Tags loaded dynamically -->
+              </div>
+            </div>
+
+            <div class="modal-projects-box">
+              <h3 class="modal-projects-title">
+                <span class="lang-es" id="modal-projects-title-es">Proyectos seleccionados</span>
+                <span class="lang-en" id="modal-projects-title-en">Selected projects</span>
+              </h3>
+              <div class="modal-projects-list" id="modal-projects-container">
+                <!-- Projects lists loaded dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="site-btn" id="modal-view-projects-btn" onpointermove="moveGlow(event)">
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="btn-content">
+                <span class="lang-es">Ver proyectos</span>
+                <span class="lang-en">View projects</span>
+                <i data-lucide="arrow-right" style="width: 16px; height: 16px; margin-left: 4px;"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Detail Modal (2 boxes) -->
+    <div id="projects-modal-overlay" class="modal-overlay" onclick="closeProjectsModalOnBackdrop(event)" style="display: none; z-index: 101;">
+      <div id="projects-modal-container" class="modal-container" style="max-width: 960px;" onpointermove="moveGlow(event)">
+        <button type="button" class="modal-close-btn" onclick="closeProjectsModal()" aria-label="Close">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+        
+        <div class="modal-content" style="max-height: 90vh;">
+          <div class="modal-header" style="justify-content: flex-start; gap: 16px;">
+            <button type="button" class="site-btn secondary" style="min-height: 32px; padding: 6px 12px; margin-right: auto;" onclick="backToServiceModal()">
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="btn-content" style="font-size: 11px; display: flex; align-items: center; gap: 4px;">
+                <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i>
+                <span class="lang-es">Volver</span>
+                <span class="lang-en">Back</span>
+              </span>
+            </button>
+            <span class="modal-number" id="projects-modal-number-text">01</span>
+          </div>
+
+          <div class="section-head" style="grid-template-columns: 1fr; gap: 8px; margin-bottom: 12px;">
+            <div>
+              <span class="eyebrow blue">
+                <span class="lang-es">Detalles del servicio</span>
+                <span class="lang-en">Service details</span>
+              </span>
+              <h2 class="modal-title" id="projects-modal-title-text" style="font-size: 32px; line-height: 1.1;">Creación de contenido con IA</h2>
+            </div>
+            <p class="modal-desc" id="projects-modal-desc-text" style="margin-top: 8px;"></p>
+            
+            <!-- Tools used container -->
+            <div id="projects-modal-tools-container" style="display: none; margin-top: 16px;">
+              <span class="eyebrow" style="font-size: 11px; color: var(--ink-muted); letter-spacing: 0.1em; display: block; margin-bottom: 8px;">
+                <span class="lang-es">HERRAMIENTAS USADAS</span>
+                <span class="lang-en">TOOLS USED</span>
+              </span>
+              <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Tool" style="height: 38px; width: auto;">
+                <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Tool" style="height: 38px; width: auto;">
+                <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Tool" style="height: 38px; width: auto;">
+                <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Tool" style="height: 38px; width: auto;">
+                <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Tool" style="height: 38px; width: auto;">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="eyebrow">
+              <span class="lang-es">Casos de éxito</span>
+              <span class="lang-en">Success cases</span>
+            </span>
+          </div>
+
+          <!-- 2 Project Cards Grid -->
+          <div class="projects-grid" id="projects-cards-container">
+            <!-- Loaded dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fullscreen Video Lightbox Overlay -->
+    <div id="video-lightbox-overlay" class="modal-overlay" onclick="closeVideoLightboxOnBackdrop(event)" style="display: none; z-index: 102; background: rgba(2, 3, 10, 0.94); cursor: zoom-out;">
+      <button type="button" class="modal-close-btn" style="top: 30px; right: 30px; width: 44px; height: 44px;" onclick="closeVideoLightbox()">
+        <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+      </button>
+      <div id="video-lightbox-wrapper" onclick="event.stopPropagation()" style="width: min(1000px, calc(100vw - 40px)); aspect-ratio: 16 / 9; position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85); margin: auto;">
+        <video id="lightbox-video" src="" autoplay controls playsinline style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+      </div>
+    </div>
+
+    <!-- Image Gallery Lightbox Modal (With dynamic thumbnail navigation strip) -->
+    <div id="image-lightbox-overlay" class="modal-overlay" onclick="closeImageLightboxOnBackdrop(event)" style="display: none; z-index: 102; background: rgba(2, 3, 10, 0.94); cursor: zoom-out;">
+      <button type="button" class="modal-close-btn" style="top: 30px; right: 30px; width: 44px; height: 44px;" onclick="closeImageLightbox()">
+        <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+      </button>
+      
+      <div onclick="event.stopPropagation()" style="width: min(800px, calc(100vw - 40px)); position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85); margin: auto; display: flex; flex-direction: column; background: #080912;">
+        <!-- Active Image in Large size -->
+        <div id="lightbox-active-img-wrapper" class="active-image-container" style="width: 100%; aspect-ratio: 4 / 3; position: relative; display: flex; align-items: center; justify-content: center; background: #02030a;">
+          <img id="lightbox-active-img" src="" alt="Gallery Image" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          
+          <!-- Prev Button -->
+          <button id="lightbox-prev-btn" onclick="prevGalleryImage()" style="position: absolute; left: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.5); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 5;">
+            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
+          </button>
+          
+          <!-- Next Button -->
+          <button id="lightbox-next-btn" onclick="nextGalleryImage()" style="position: absolute; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.5); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 5;">
+            <i data-lucide="chevron-right" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+        
+        <!-- Thumbnails strip below the big image -->
+        <div id="gallery-thumbnails-container" style="display: flex; gap: 10px; padding: 12px 16px; background: rgba(0, 0, 0, 0.4); overflow-x: auto; border-top: 1px solid rgba(255, 255, 255, 0.06); justify-content: center; align-items: center; width: 100%;">
+          <!-- Thumbnails dynamically rendered -->
+        </div>
+        
+        <!-- Footer / Indicators -->
+        <div style="padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.06); font-family: 'Outfit', sans-serif;">
+          <span style="color: var(--ink-soft); font-size: 13px;" id="gallery-counter">1 / 5</span>
+          <div style="display: flex; gap: 6px;" id="gallery-bullets">
+            <!-- Bullets loaded dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript logic -->
+  <script>
+    // 1. Next.js server local check & workspace iframe management
+    const checkServer = () => {
+      fetch('http://localhost:3000', { mode: 'no-cors' })
+        .then(() => {
+          const statusDot = document.querySelector('.status-dot');
+          statusDot.className = 'status-dot active';
+          
+          document.getElementById('dev-status').innerHTML = `
+            <span class="status-dot active"></span>
+            <span class="lang-es">Servidor Next.js: Activo (En línea)</span>
+            <span class="lang-en">Next.js Server: Active (Online)</span>
+          `;
+          lucide.createIcons();
+        })
+        .catch(() => {
+          const statusDot = document.querySelector('.status-dot');
+          statusDot.className = 'status-dot inactive';
+          
+          document.getElementById('dev-status').innerHTML = `
+            <span class="status-dot inactive"></span>
+            <span class="lang-es">Servidor Next.js: Apagado (Solo preview estático)</span>
+            <span class="lang-en">Next.js Server: Offline (Static preview only)</span>
+          `;
+          lucide.createIcons();
+        });
+    };
+    
+    // Check local server every 5 seconds
+    setInterval(checkServer, 5000);
+    checkServer();
+
+    // Mode toggling (Static vs Live iframe)
+    function switchMode(mode) {
+      document.getElementById('tab-static').classList.remove('active');
+      document.getElementById('tab-live').classList.remove('active');
+      
+      if (mode === 'live') {
+        document.getElementById('tab-live').classList.add('active');
+        document.getElementById('live-iframe-container').style.display = 'block';
+        document.getElementById('app-shell').style.display = 'none';
+        
+        const iframe = document.getElementById('dev-iframe');
+        if (iframe.src === 'about:blank') {
+          iframe.src = 'http://localhost:3000';
+        }
+      } else {
+        document.getElementById('tab-static').classList.add('active');
+        document.getElementById('live-iframe-container').style.display = 'none';
+        document.getElementById('app-shell').style.display = 'block';
+      }
+    }
+
+    // Copy command
+    function copyCommand() {
+      navigator.clipboard.writeText('npm run dev');
+      alert('Comando "npm run dev" copiado al portapapeles.');
+    }
+
+    // 2. Interactive features for local site replica
+    let currentLang = 'es';
+    let selectedServices = [0, 2];
+    let activeModalIndex = null;
+
+    const SERVICE_OPTIONS = {
+      en: ["AI Content Creation", "Audiovisual Production", "Content Automation"],
+      es: ["Creación de contenido con IA", "Producción audiovisual", "Automatización de contenido"]
+    };
+
+    const SERVICES_DATA = {
+      es: [
+        {
+          number: "01",
+          title: "Creación de Contenido con IA",
+          description: "Sistemas de contenido con IA para crear imágenes, videos y piezas de campaña más rápido, manteniendo consistencia visual y reduciendo costos de producción.",
+          tags: ["Contenido IA", "Ecommerce", "Meta Ads", "ComfyUI"],
+          accent: "blue",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Banner (IA creation).webp",
+          projects: ["Generación de contenido de producto", "Variaciones creativas para campañas", "Contenido lifestyle on-brand"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "Sesión de Campaña IA",
+              description: "Generación de imágenes lifestyle de producto para catálogo, reduciendo costos de sesiones de fotos.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service0-project0.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 1 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 2 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 3 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 4 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 5  Pagu.webp"
+              ]
+            },
+            {
+              company: "Danna Olarte",
+              title: "Variaciones Creativas",
+              description: "Variaciones de alto volumen para testing en pauta digital, manteniendo la estética de marca.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service0-project1.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-1.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-2.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-3.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-4.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-5.webp"
+              ]
+            }
+          ]
+        },
+        {
+          number: "02",
+          title: "Producción audiovisual",
+          description: "Producción de video para ecommerce y campañas digitales, creando piezas dinámicas, atractivas y optimizadas para captar atención y mejorar el rendimiento creativo.",
+          tags: ["Video Production", "Ecommerce", "Meta Ads", "Motion"],
+          accent: "pink",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Banner (Video).webp",
+          projects: ["Videos de producto y lifestyle", "Creatividades en video para campañas", "Edición, motion y variaciones de contenido"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "Hooks Cinemáticos",
+              description: "Hooks de video dinámicos combinando clips de video, diseño gráfico y voces generadas con IA.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service1-project0.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/Video Producción (Amper).webm"
+            },
+            {
+              company: "Danna Olarte",
+              title: "Spot Nativo de TikTok",
+              description: "Edición dinámica en formato UGC de alta conversión optimizado para TikTok y Reels.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/Miniatura Colombiana.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/Colombiana Campaña 1_1 (1).webm"
+            }
+          ]
+        },
+        {
+          number: "03",
+          title: "Automatización de contenido",
+          description: "Automatización de la producción de variaciones creativas y escalamiento de activos usando inteligencia artificial y Magnific AI.",
+          tags: ["Magnific AI", "ComfyUI", "APIs", "Escalamiento de Contenido"],
+          accent: "blue",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Automatización.webp",
+          projects: ["Escalamiento automático de assets omnicanal", "Generación automatizada de piezas de diseño", "Flujos automatizados de publicación y distribución"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "Creador de Banners en Lote",
+              description: "Flujo asistido por IA para generar y recortar banners promocionales en múltiples relaciones de aspecto.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/Shampoo Prai.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/0807.webm"
+            },
+            {
+              company: "Danna Olarte",
+              title: "Programador Omnicanal",
+              description: "Distribución automatizada de activos a múltiples canales digitales sin intervención manual.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service2-project1.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (1).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (2).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (3).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (4).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (5).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (7).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/ComfyUI_temp_inrkh_00004_.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/ComfyUI-image_4_00001_.webp"
+              ]
+            }
+          ]
+        }
+      ],
+      en: [
+        {
+          number: "01",
+          title: "AI Content Creation",
+          description: "AI content systems to generate images, videos, and campaign assets faster, maintaining visual consistency and reducing production costs.",
+          tags: ["AI Content", "Ecommerce", "Meta Ads", "ComfyUI"],
+          accent: "blue",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Banner (IA creation).webp",
+          projects: ["Product content generation", "Creative variations for campaigns", "On-brand lifestyle content"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "AI Catalog Shoot",
+              description: "Generated catalog and lifestyle assets for an apparel brand, reducing studio shoot costs.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service0-project0.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 1 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 2 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 3 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 4 Pagu.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Imagen 5  Pagu.webp"
+              ]
+            },
+            {
+              company: "Danna Olarte",
+              title: "Creative Variations",
+              description: "High-volume variations for social media ad testing, maintaining brand style.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service0-project1.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-1.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-2.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-3.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-4.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/velo-slide-5.webp"
+              ]
+            }
+          ]
+        },
+        {
+          number: "02",
+          title: "Audiovisual Production",
+          description: "Video production for e-commerce and digital campaigns, creating dynamic, engaging, and optimized assets to capture attention and improve creative performance.",
+          tags: ["Video Production", "Ecommerce", "Meta Ads", "Motion"],
+          accent: "pink",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Banner-Video(Ingles).webp",
+          projects: ["Product & lifestyle videos", "Video creatives for campaigns", "Editing, motion & content variations"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "Cinematic Hooks",
+              description: "Dynamic video hooks combining stock footage, graphic design and AI voice overs.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service1-project0.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/Video Producción (Amper).webm"
+            },
+            {
+              company: "Danna Olarte",
+              title: "TikTok Native Spot",
+              description: "High-converting UGC-style short-form video edit optimized for TikTok and Reels.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/Miniatura Colombiana.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/Colombiana Campaña 1_1 (1).webm"
+            }
+          ]
+        },
+        {
+          number: "03",
+          title: "Content Automation",
+          description: "Automating creative variation production and asset distribution across your channels using Magnific AI and ComfyUI.",
+          tags: ["Magnific AI", "ComfyUI", "API Integrations", "Content Scaling"],
+          accent: "blue",
+          banner: "./Pagurai-websiteV2-2026/public/assets/images/projects/Banner-Automatización(Ingles).webp",
+          projects: ["Multi-channel campaign asset scaling", "Automated design variation production", "Dynamic content distribution workflows"],
+          projectsDetail: [
+            {
+              company: "Danna Olarte",
+              title: "Batch Banner Creator",
+              description: "AI-assisted workflow that generates and crops promotional banners across multiple aspect ratios.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/Shampoo Prai.webp",
+              video: "./Pagurai-websiteV2-2026/public/assets/images/projects/0807.webm"
+            },
+            {
+              company: "Danna Olarte",
+              title: "Multi-channel Scheduler",
+              description: "Automated distribution system sending creative variants directly to social channels.",
+              image: "./Pagurai-websiteV2-2026/public/assets/images/projects/service2-project1.webp",
+              images: [
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (1).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (2).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (3).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (4).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (5).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/Comfy (7).webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/ComfyUI_temp_inrkh_00004_.webp",
+                "./Pagurai-websiteV2-2026/public/assets/images/projects/ComfyUI-image_4_00001_.webp"
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    // Card glow tracking
+    function moveGlow(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      e.currentTarget.style.setProperty("--mx", `${x}px`);
+      e.currentTarget.style.setProperty("--my", `${y}px`);
+      e.currentTarget.style.setProperty("--glow-x", `${x}px`);
+      e.currentTarget.style.setProperty("--glow-y", `${y}px`);
+    }
+
+    // Global listener for card glow effects on pointermove
+    document.addEventListener("pointermove", (e) => {
+      const selectors = [
+        ".glow-card",
+        ".service-row",
+        ".portfolio-card",
+        ".contact-cards div",
+        ".lead-form",
+        ".hero-visual",
+        ".proof-strip div",
+        ".modal-container",
+        ".modal-banner",
+      ].join(",");
+
+      document.querySelectorAll(selectors).forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // Theme toggler (Light / Dark)
+    function toggleTheme() {
+      const shell = document.getElementById('app-shell');
+      const logoImg = document.getElementById('brand-logo-img');
+      const themeIcon = document.getElementById('theme-toggle-icon');
+      
+      const isDark = shell.classList.contains('theme-dark');
+      if (isDark) {
+        shell.classList.remove('theme-dark');
+        shell.classList.add('theme-light');
+        logoImg.src = './Pagurai-websiteV2-2026/public/assets/images/logo/logo-pagurai-light.webp';
+        themeIcon.setAttribute('data-lucide', 'moon');
+      } else {
+        shell.classList.remove('theme-light');
+        shell.classList.add('theme-dark');
+        logoImg.src = './Pagurai-websiteV2-2026/public/assets/images/logo/logo-pagurai-dark.webp';
+        themeIcon.setAttribute('data-lucide', 'sun');
+      }
+      lucide.createIcons();
+    }
+
+    // Language switcher
+    function changeLanguage(lang) {
+      currentLang = lang;
+      if (lang === 'en') {
+        document.body.classList.remove('lang-es');
+        document.body.classList.add('lang-en');
+        document.getElementById('lang-btn-es').classList.remove('active');
+        document.getElementById('lang-btn-en').classList.add('active');
+      } else {
+        document.body.classList.remove('lang-en');
+        document.body.classList.add('lang-es');
+        document.getElementById('lang-btn-en').classList.remove('active');
+        document.getElementById('lang-btn-es').classList.add('active');
+      }
+      renderServiceOptions();
+      updateFormPlaceholders();
+    }
+
+    // Render multi-select services options
+    function renderServiceOptions() {
+      const container = document.getElementById('service-options-container');
+      container.innerHTML = '';
+      
+      SERVICE_OPTIONS[currentLang].forEach((item, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = selectedServices.includes(index) ? 'selected' : '';
+        btn.textContent = item;
+        btn.onclick = () => {
+          if (selectedServices.includes(index)) {
+            selectedServices = selectedServices.filter(i => i !== index);
+            btn.classList.remove('selected');
+          } else {
+            selectedServices.push(index);
+            btn.classList.add('selected');
+          }
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    // Update Form placeholders on language change
+    const FORM_PLACEHOLDERS = {
+      es: {
+        name: "Tu nombre",
+        company: "Nombre de tu marca",
+        whatsapp: "+57 313 612 9197",
+        web: "pagurai.com · @marca",
+        business: "Skincare DTC, café especialidad, etc.",
+        message: "Cuéntanos qué necesitas..."
+      },
+      en: {
+        name: "Your name",
+        company: "Your brand name",
+        whatsapp: "+57 313 612 9197",
+        web: "pagurai.com · @brand",
+        business: "Skincare DTC, specialty coffee, etc.",
+        message: "Tell us what you need..."
+      }
+    };
+
+    function updateFormPlaceholders() {
+      const placeholders = FORM_PLACEHOLDERS[currentLang];
+      document.getElementById('form-name').placeholder = placeholders.name;
+      document.getElementById('form-company').placeholder = placeholders.company;
+      document.getElementById('form-whatsapp').placeholder = placeholders.whatsapp;
+      document.getElementById('form-web').placeholder = placeholders.web;
+      document.getElementById('form-business').placeholder = placeholders.business;
+      document.getElementById('form-message').placeholder = placeholders.message;
+    }
+
+    // Form submit simulated action
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const successText = currentLang === 'es' 
+        ? "Brief recibido. Te contactaremos pronto." 
+        : "Brief received. We will contact you soon.";
+        
+      document.getElementById('form-message-info').innerHTML = `
+        <span style="color: #00cc66; font-weight: 600;">${successText}</span>
+      `;
+    }
+
+    // 1st Level: Service overview modal open/close functions
+    function openServiceModal(index, bannerOverride = null) {
+      activeModalIndex = index;
+      let service = SERVICES_DATA[currentLang][index];
+      if (!service) return;
+
+      document.getElementById('modal-number-text').textContent = service.number;
+      document.getElementById('modal-title-text').textContent = service.title;
+      document.getElementById('modal-desc-text').textContent = service.description;
+
+      // Select banner image based on service.banner
+      let bannerImage = bannerOverride || service.banner || '';
+      document.getElementById('modal-banner-img').src = bannerImage;
+      
+      const container = document.getElementById('modal-container');
+      container.className = `modal-container ${service.accent}`;
+
+      // Load Tags
+      const tagsContainer = document.getElementById('modal-tags-container');
+      tagsContainer.innerHTML = '';
+      service.tags.forEach(tag => {
+        const em = document.createElement('em');
+        em.textContent = tag;
+        tagsContainer.appendChild(em);
+      });
+
+      // Override modal-projects-title for customized blocks
+      const titleEsEl = document.getElementById('modal-projects-title-es');
+      const titleEnEl = document.getElementById('modal-projects-title-en');
+      if (titleEsEl && titleEnEl) {
+        if (service.cardTitle) {
+          titleEsEl.textContent = service.cardTitle;
+          titleEnEl.textContent = service.cardTitle;
+        } else {
+          titleEsEl.textContent = "Proyectos implementados";
+          titleEnEl.textContent = "Implemented projects";
+        }
+      }
+
+      // Load Projects List strings
+      const projectsContainer = document.getElementById('modal-projects-container');
+      projectsContainer.innerHTML = '';
+      service.projects.forEach(project => {
+        const div = document.createElement('div');
+        div.className = 'modal-project-item';
+        div.innerHTML = `
+          <i data-lucide="check-circle-2" style="width: 16px; height: 16px; margin-right: 8px; color: var(--accent-color);"></i>
+          <span>${project}</span>
+        `;
+        projectsContainer.appendChild(div);
+      });
+
+      // Map dynamic action to the footer button to trigger second level projects modal
+      const viewProjectsBtn = document.getElementById('modal-view-projects-btn');
+      if (service.projectsDetail && service.projectsDetail.length > 0) {
+        viewProjectsBtn.style.display = 'inline-flex';
+        viewProjectsBtn.onclick = () => {
+          closeServiceModal();
+          openProjectsModal(index);
+        };
+      } else {
+        viewProjectsBtn.style.display = 'none';
+      }
+
+      document.getElementById('modal-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeServiceModal() {
+      document.getElementById('modal-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function closeServiceModalOnBackdrop(e) {
+      if (e.target.id === 'modal-overlay') {
+        closeServiceModal();
+      }
+    }
+
+    // 2nd Level: Projects details modal open/close
+    function openProjectsModal(index) {
+      activeModalIndex = index;
+      const service = SERVICES_DATA[currentLang][index];
+      if (!service) return;
+
+      document.getElementById('projects-modal-number-text').textContent = service.number;
+      document.getElementById('projects-modal-title-text').textContent = service.title;
+      document.getElementById('projects-modal-desc-text').textContent = service.description;
+
+      const toolsContainer = document.getElementById('projects-modal-tools-container');
+      if (toolsContainer) {
+        toolsContainer.style.display = 'block';
+        const toolsWrapper = toolsContainer.querySelector('div');
+        
+        let toolLogos = `
+          <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto.webp" alt="Tool" style="height: 38px; width: auto;">
+          <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (1).webp" alt="Tool" style="height: 38px; width: auto;">
+          <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (2).webp" alt="Tool" style="height: 38px; width: auto;">
+          <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (3).webp" alt="Tool" style="height: 38px; width: auto;">
+          <img src="./Pagurai-websiteV2-2026/public/assets/images/projects/Texto (4).webp" alt="Tool" style="height: 38px; width: auto;">
+        `;
+        toolsWrapper.innerHTML = toolLogos;
+      } else {
+        toolsContainer.style.display = 'none';
+      }
+      
+      const container = document.getElementById('projects-modal-container');
+      container.className = `modal-container ${service.accent}`;
+
+      // Render the 2 project boxes dynamically (Clean text-above-image structure)
+      const cardsContainer = document.getElementById('projects-cards-container');
+      cardsContainer.innerHTML = '';
+
+      const viewDemoText = currentLang === 'es' ? "Ver resultados" : "View results";
+
+      service.projectsDetail.forEach(project => {
+        const card = document.createElement('article');
+        card.className = `glow-card mini block-card project-card ${service.accent === 'pink' ? 'connected-card' : ''}`;
+        
+        let btnAction = '';
+        if (project.video) {
+          card.style.cursor = 'pointer';
+          card.onclick = () => openVideoLightbox(project.video);
+          btnAction = `openVideoLightbox('${project.video}')`;
+        } else if (project.images) {
+          card.style.cursor = 'pointer';
+          card.onclick = () => openImageLightbox(project.images);
+          const imagesStr = project.images.map(img => `'${img}'`).join(',');
+          btnAction = `openImageLightbox([${imagesStr}])`;
+        } else {
+          card.style.cursor = 'pointer';
+          card.onclick = () => openImageLightbox([project.image]);
+          btnAction = `openImageLightbox(['${project.image}'])`;
+        }
+        card.onpointermove = moveGlow;
+
+        // Custom overlay indicator icon (Removed as requested)
+        let iconOverlay = '';
+
+        const imageRatio = project.aspectRatio || "16 / 9";
+        const fitStyle = project.aspectRatio ? "contain" : "cover";
+
+        // Clean layout content: Company/Icon header -> Text Title/Description -> Image Wrapper -> Button
+        card.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 14px; height: 100%;">
+            <!-- Header -->
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+              <span style="color: ${service.accent === 'pink' ? 'var(--pink-neon)' : 'var(--accent-color)'}; font-weight: bold; font-family: var(--font-body); letter-spacing: 0.1em; font-size: 13px;">
+                ${project.company.toUpperCase()}
+              </span>
+              <i data-lucide="check-circle-2" style="width: 18px; height: 18px; color: ${service.accent === 'pink' ? 'var(--pink-neon)' : 'var(--accent-color)'};"></i>
+            </div>
+            
+            <!-- Text Description (Above Image) -->
+            <div>
+              <h3 style="font-size: 21px; color: #fff; font-family: var(--font-display); font-style: italic; margin: 0; text-transform: uppercase; line-height: 1.1;">
+                ${project.title}
+              </h3>
+              <p style="margin-top: 8px; color: var(--ink-soft); font-size: 13.5px; line-height: 1.5; font-family: var(--font-body);">
+                ${project.description}
+              </p>
+            </div>
+
+            <!-- Image wrapper -->
+            <div class="project-card-image-wrapper" style="aspect-ratio: ${imageRatio};">
+              <img src="${project.image}" alt="" style="object-fit: ${fitStyle};">
+              ${iconOverlay}
+            </div>
+
+            <!-- Button at bottom (Performs same action as clicking card) -->
+            <div style="margin-top: auto; padding-top: 8px;">
+              <button
+                type="button"
+                class="site-btn secondary"
+                style="padding: 8px 18px; font-size: 11px; min-height: 36px; width: 100%; display: flex; justify-content: center;"
+                onpointermove="moveGlow(event)"
+                onclick="event.stopPropagation(); ${btnAction};"
+              >
+                <span class="btn-glow" aria-hidden="true"></span>
+                <span class="btn-content">${viewDemoText}</span>
+              </button>
+            </div>
+          </div>
+        `;
+        cardsContainer.appendChild(card);
+      });
+
+      document.getElementById('projects-modal-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeProjectsModal() {
+      document.getElementById('projects-modal-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function closeProjectsModalOnBackdrop(e) {
+      if (e.target.id === 'projects-modal-overlay') {
+        closeProjectsModal();
+      }
+    }
+
+    function backToServiceModal() {
+      closeProjectsModal();
+      openServiceModal(activeModalIndex);
+    }
+
+    // 3rd Level: Fullscreen video lightbox
+    function openVideoLightbox(videoUrl) {
+      const video = document.getElementById('lightbox-video');
+      video.src = videoUrl;
+      const wrapper = document.getElementById('video-lightbox-wrapper');
+      if (wrapper) {
+        if (videoUrl.includes('1_1') || videoUrl.includes('Colombiana')) {
+          wrapper.style.aspectRatio = '1 / 1';
+          wrapper.style.width = 'min(500px, calc(100vw - 40px))';
+        } else {
+          wrapper.style.aspectRatio = '16 / 9';
+          wrapper.style.width = 'min(1000px, calc(100vw - 40px))';
+        }
+      }
+      document.getElementById('video-lightbox-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoLightbox() {
+      const video = document.getElementById('lightbox-video');
+      video.pause();
+      video.src = '';
+      document.getElementById('video-lightbox-overlay').style.display = 'none';
+      
+      // Maintain body overflow locked if parent modal is still open
+      if (document.getElementById('projects-modal-overlay').style.display === 'flex') {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeVideoLightboxOnBackdrop(e) {
+      if (e.target.id === 'video-lightbox-overlay') {
+        closeVideoLightbox();
+      }
+    }
+
+    // 3rd Level: Image Gallery Lightbox Modal
+    let activeGalleryImages = [];
+    let activeGalleryIndex = 0;
+    let autoscrollInterval = null;
+
+    function openImageLightbox(images) {
+      activeGalleryImages = images;
+      activeGalleryIndex = 0;
+      updateGalleryView();
+      document.getElementById('image-lightbox-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function updateGalleryView() {
+      const activeImg = document.getElementById('lightbox-active-img');
+      const imgSrc = activeGalleryImages[activeGalleryIndex];
+      activeImg.src = imgSrc;
+      
+      const imgContainer = document.getElementById('lightbox-active-img-wrapper');
+      
+      // Stop any existing autoscroll first
+      stopAutoScroll();
+
+      // Smart detection for tall mockups (no-crop scroller + cinematic autoscroll!)
+      const isMockup = imgSrc.includes('Landing page') || imgSrc.includes('Landing%20page') || imgSrc.includes('Pagureo') || imgSrc.includes('carro') || imgSrc.includes('Lp') || imgSrc.includes('Marca') || imgSrc.includes('Dashboard') || imgSrc.includes('dashboard');
+      
+      if (isMockup) {
+        imgContainer.style.overflowY = 'auto';
+        imgContainer.style.alignItems = 'flex-start';
+        activeImg.style.width = '100%';
+        activeImg.style.height = 'auto';
+        activeImg.style.maxHeight = 'none';
+        activeImg.style.objectFit = 'contain';
+        
+        // Start automatic slow scroll showcase so the user doesn't have to scroll manually!
+        startAutoScroll(imgContainer);
+      } else {
+        imgContainer.style.overflowY = 'hidden';
+        imgContainer.style.alignItems = 'center';
+        activeImg.style.width = '';
+        activeImg.style.height = '';
+        activeImg.style.maxHeight = '100%';
+        activeImg.style.maxWidth = '100%';
+        activeImg.style.objectFit = 'contain';
+      }
+
+      // Dynamic control visibility (hide elements if single image project)
+      const prevBtn = document.getElementById('lightbox-prev-btn');
+      const nextBtn = document.getElementById('lightbox-next-btn');
+      const thumbsContainer = document.getElementById('gallery-thumbnails-container');
+      const footerContainer = thumbsContainer.nextElementSibling; // the footer indicator div
+
+      if (activeGalleryImages.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        thumbsContainer.style.display = 'none';
+        footerContainer.style.display = 'none';
+      } else {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        thumbsContainer.style.display = 'flex';
+        footerContainer.style.display = 'flex';
+
+        // Update indicators
+        document.getElementById('gallery-counter').textContent = `${activeGalleryIndex + 1} / ${activeGalleryImages.length}`;
+        
+        // Render bullets
+        const bulletsContainer = document.getElementById('gallery-bullets');
+        bulletsContainer.innerHTML = '';
+        activeGalleryImages.forEach((_, idx) => {
+          const bullet = document.createElement('span');
+          bullet.style.cssText = `width: 6px; height: 6px; border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.2s; background: ${idx === activeGalleryIndex ? '#0098ff' : 'rgba(255,255,255,0.2)'};`;
+          bullet.onclick = () => {
+            activeGalleryIndex = idx;
+            updateGalleryView();
+          };
+          bulletsContainer.appendChild(bullet);
+        });
+
+        // Render thumbnails strip
+        thumbsContainer.innerHTML = '';
+        activeGalleryImages.forEach((thumbSrc, idx) => {
+          const thumbWrapper = document.createElement('div');
+          const isActive = idx === activeGalleryIndex;
+          thumbWrapper.style.cssText = `
+            width: 72px; 
+            height: 54px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            transition: all 0.25s var(--ease-out); 
+            border: 2.5px solid ${isActive ? '#0098ff' : 'rgba(255,255,255,0.12)'};
+            transform: ${isActive ? 'scale(1.08)' : 'scale(1)'};
+            box-shadow: ${isActive ? '0 0 12px rgba(0, 152, 255, 0.45)' : 'none'};
+            flex-shrink: 0;
+            opacity: ${isActive ? '1' : '0.62'};
+          `;
+          
+          const img = document.createElement('img');
+          img.src = thumbSrc;
+          img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+          
+          thumbWrapper.appendChild(img);
+          
+          // Hover visual adjustments
+          thumbWrapper.onmouseenter = () => { if(!isActive) thumbWrapper.style.opacity = '0.9'; };
+          thumbWrapper.onmouseleave = () => { if(!isActive) thumbWrapper.style.opacity = '0.62'; };
+          
+          thumbWrapper.onclick = () => {
+            activeGalleryIndex = idx;
+            updateGalleryView();
+          };
+          thumbsContainer.appendChild(thumbWrapper);
+        });
+      }
+    }
+
+    // Automated slow pan up/down scrolling loop
+    function startAutoScroll(container) {
+      setTimeout(() => {
+        const scrollMax = container.scrollHeight - container.clientHeight;
+        if (scrollMax <= 0) return;
+        
+        let currentScroll = 0;
+        let direction = 1; // 1 = scroll down, -1 = scroll up
+        let pauseTicks = 0;
+        
+        autoscrollInterval = setInterval(() => {
+          if (pauseTicks > 0) {
+            pauseTicks--;
+            return;
+          }
+          
+          currentScroll += direction * 1.2; // Slow cinematic scroll speed
+          
+          if (currentScroll >= scrollMax) {
+            currentScroll = scrollMax;
+            direction = -1; // scroll back up
+            pauseTicks = 70; // pause at bottom for ~1.2 seconds
+          } else if (currentScroll <= 0) {
+            currentScroll = 0;
+            direction = 1; // scroll back down
+            pauseTicks = 70; // pause at top for ~1.2 seconds
+          }
+          
+          container.scrollTop = currentScroll;
+        }, 16);
+      }, 500); // Wait for rendering load
+    }
+
+    // Stop automated scroll
+    function stopAutoScroll() {
+      if (autoscrollInterval) {
+        clearInterval(autoscrollInterval);
+        autoscrollInterval = null;
+      }
+    }
+
+    function prevGalleryImage() {
+      if (activeGalleryIndex > 0) {
+        activeGalleryIndex--;
+      } else {
+        activeGalleryIndex = activeGalleryImages.length - 1;
+      }
+      updateGalleryView();
+    }
+
+    // Toggle menu-links on mobile size
+    function toggleMobileMenu() {
+      const navLinks = document.getElementById('primary-navigation');
+      navLinks.classList.toggle('open');
+    }
+
+    function nextGalleryImage() {
+      if (activeGalleryIndex < activeGalleryImages.length - 1) {
+        activeGalleryIndex++;
+      } else {
+        activeGalleryIndex = 0;
+      }
+      updateGalleryView();
+    }
+
+    // Close lightbox
+    function closeImageLightbox() {
+      stopAutoScroll();
+      document.getElementById('image-lightbox-overlay').style.display = 'none';
+      if (document.getElementById('projects-modal-overlay').style.display === 'flex') {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeImageLightboxOnBackdrop(e) {
+      if (e.target.id === 'image-lightbox-overlay') {
+        closeImageLightbox();
+      }
+    }
+
+    // Keydown handlers (ESC to close modals, Arrow keys for gallery)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (document.getElementById('image-lightbox-overlay').style.display === 'flex') {
+          closeImageLightbox();
+        } else if (document.getElementById('video-lightbox-overlay').style.display === 'flex') {
+          closeVideoLightbox();
+        } else if (document.getElementById('projects-modal-overlay').style.display === 'flex') {
+          closeProjectsModal();
+        } else if (document.getElementById('modal-overlay').style.display === 'flex') {
+          closeServiceModal();
+        }
+      }
+      if (document.getElementById('image-lightbox-overlay').style.display === 'flex') {
+        if (e.key === "ArrowLeft") {
+          prevGalleryImage();
+        } else if (e.key === "ArrowRight") {
+          nextGalleryImage();
+        }
+      }
+    });
+
+    // DotMatrix Canvas background animation logic
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let raf = 0;
+    let time = 0;
+    let dots = [];
+    let accentColor = [0, 152, 255];
+
+    const hash = (x, y) =>
+      ((Math.sin(x * 127.1 + y * 311.7) * 43758.5453123) % 1 + 1) % 1;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const accentString =
+        getComputedStyle(document.documentElement).getPropertyValue("--accent-rgb").trim() ||
+        "0, 152, 255";
+      accentColor = accentString.split(",").map((value) => Number(value.trim()));
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      dots = [];
+      const grid = 20;
+      const cols = Math.ceil(width / grid) + 1;
+      const rows = Math.ceil(height / grid) + 1;
+      for (let r = 0; r < rows; r += 1) {
+        for (let c = 0; c < cols; c += 1) {
+          dots.push({
+            x: c * grid + grid / 2,
+            y: r * grid + grid / 2,
+            seed: hash(c, r),
+            delay: hash(c + 0.5, r + 0.5),
+          });
+        }
+      }
+    };
+
+    const draw = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      ctx.clearRect(0, 0, width, height);
+      time += 0.016;
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const maxDist = Math.sqrt(cx * cx + cy * cy) || 1;
+
+      dots.forEach((dot) => {
+        const flicker = Math.sin(time * 3.5 + dot.seed * 50) * 0.5 + 0.5;
+        const phase = Math.sin(time * 1.5 + dot.delay * 12) * 0.5 + 0.5;
+        const blink = Math.sin(time * 1.8 + dot.seed * 100 + dot.delay * 60);
+        const blinkOn = blink > (dot.seed > 0.7 ? -0.4 : 0.1) ? 1 : 0;
+        const dist = Math.sqrt((dot.x - cx) ** 2 + (dot.y - cy) ** 2);
+        const reveal = Math.max(0, Math.min(1, time * 1.2 - (dist / maxDist) * 3));
+        let baseOpacity;
+
+        if (dot.seed > 0.85) {
+          baseOpacity = (0.46 + flicker * 0.34) * blinkOn;
+        } else if (dot.seed > 0.6) {
+          baseOpacity = (0.22 + phase * 0.18) * blinkOn;
+        } else {
+          baseOpacity = (0.07 + flicker * 0.08) * blinkOn;
+        }
+
+        const opacity = baseOpacity * reveal;
+        if (opacity < 0.01) return;
+
+        const rgb = dot.seed > 0.92 ? accentColor.join(",") : "255,255,255";
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb},${opacity})`;
+        ctx.fill();
+      });
+
+      raf = requestAnimationFrame(draw);
+    };
+
+    // Initialize Canvas Matrix
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+
+    // Initial load configurations
+    lucide.createIcons();
+    renderServiceOptions();
+    updateFormPlaceholders();
+  </script>
+</body>
+</html>
