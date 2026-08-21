@@ -716,8 +716,8 @@ export default function PaguraiLanding() {
                 <div className="glow-card about-desc-card" onPointerMove={moveGlow}>
                   <p className="about-text">
                     {lang === "es"
-                      ? "Como Diseñadora Creativa de IA, me especializo en transformar ideas en experiencias visuales de alto impacto combinando creatividad, narrativa (storytelling) e inteligencia artificial. Diseño sistemas creativos escalables que ayudan a las marcas a producir contenido atractivo, consistente y visualmente impactante en múltiples plataformas digitales."
-                      : "As an AI Creative Designer, I specialize in transforming ideas into high-impact visual experiences through the combination of creativity, storytelling, and artificial intelligence. I design scalable creative systems that help brands produce engaging, consistent, and visually compelling content across multiple digital platforms."}
+                      ? "Mi nombre es Danna Olarte. Como Diseñadora Creativa de IA, me especializo en transformar ideas en experiencias visuales de alto impacto combinando creatividad, narrativa (storytelling) e inteligencia artificial. Diseño sistemas creativos escalables que ayudan a las marcas a producir contenido atractivo, consistente y visualmente impactante en múltiples plataformas digitales."
+                      : "My name is Danna Olarte. As an AI Creative Designer, I specialize in transforming ideas into high-impact visual experiences through the combination of creativity, storytelling, and artificial intelligence. I design scalable creative systems that help brands produce engaging, consistent, and visually compelling content across multiple digital platforms."}
                   </p>
                 </div>
 
