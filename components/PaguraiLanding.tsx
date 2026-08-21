@@ -132,16 +132,16 @@ const COPY: Record<Lang, Copy> = {
       badge: "[CREATIVE_AI_26]",
       title: <>Visual Content & <em>AI for E-commerce</em>.</>,
       text: "Scalable creative systems producing high-impact, consistent, and visually compelling product & lifestyle content using AI.",
-      work: "View work",
+      work: "Contact me",
       system: "View system",
       visualAria: "Danna Olarte visual system",
       video: "AI · CREATIVE ENGINE",
       variations: "saved / month",
     },
     proof: [
-      ["EXPERIENCE", "5+ YEARS CREATIVE"],
-      ["FOCUS", "AI CONTENT & DESIGN"],
-      ["BASE", "REMOTE / IN-HOUSE"],
+      ["SPECIALTY", "AI CONTENT CREATION"],
+      ["FOCUS", "ECOMMERCE BRANDS"],
+      ["BASE", "BOGOTÁ, COLOMBIA"],
       ["STATUS", "AVAILABLE NOW"],
     ],
     blocks: {
@@ -167,7 +167,7 @@ const COPY: Record<Lang, Copy> = {
     portfolio: {
       eyebrow: "PORTFOLIO · SELECTED WORK",
       title: "Mixed media, visual systems, and campaign-ready assets.",
-      all: "View all",
+      all: "Contact me",
       items: [
         ["Skincare: Hero set", "AI Image", "large"],
         ["Coffee brand: :30 spot", "Video Ad", "wide"],
@@ -232,16 +232,16 @@ const COPY: Record<Lang, Copy> = {
       badge: "[CREATIVE_AI_26]",
       title: <>Contenido Visual e <em>IA para E-commerce</em>.</>,
       text: "Sistemas creativos escalables que producen contenido de producto y estilo de vida atractivo, consistente y visualmente impactante.",
-      work: "Ver trabajo",
+      work: "Contáctame",
       system: "Ver sistema",
       visualAria: "Sistema visual de Danna Olarte",
       video: "IA · MOTOR CREATIVO",
       variations: "ahorradas / mes",
     },
     proof: [
-      ["EXPERIENCIA", "5+ AÑOS CREATIVOS"],
-      ["ENFOQUE", "IA Y DISEÑO VISUAL"],
-      ["BASE", "REMOTE / IN-HOUSE"],
+      ["ESPECIALIDAD", "CREACIÓN DE CONTENIDO CON IA"],
+      ["ENFOQUE", "MARCAS ECOMMERCE"],
+      ["BASE", "BOGOTÁ, COLOMBIA"],
       ["ESTADO", "DISPONIBLE AHORA"],
     ],
     blocks: {
@@ -267,7 +267,7 @@ const COPY: Record<Lang, Copy> = {
     portfolio: {
       eyebrow: "PORTFOLIO · TRABAJOS SELECCIONADOS",
       title: "Mixed media, sistemas visuales y piezas listas para campaña.",
-      all: "Ver todos",
+      all: "Contáctame",
       items: [
         ["Skincare: Hero set", "Imagen IA", "large"],
         ["Marca de café: spot :30", "Video Ad", "wide"],
@@ -632,7 +632,7 @@ export default function PaguraiLanding() {
             <h1>{copy.hero.title}</h1>
             <p>{copy.hero.text}</p>
             <div className="hero-actions">
-              <Button href="#portfolio">
+              <Button href="#contacto">
                 {copy.hero.work} <ArrowRight size={18} />
               </Button>
               <Button href="#servicios" variant="ghost">

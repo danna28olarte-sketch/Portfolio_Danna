@@ -384,7 +384,7 @@ main {
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.88fr);
   align-items: center;
   gap: 48px;
-  padding: 64px 0 36px;
+  padding: 150px 0 36px;
 }
 
 .hero-section,
@@ -701,6 +701,16 @@ main {
   bottom: auto;
   color: var(--pink-neon);
   border-color: rgba(231, 33, 117, 0.32);
+}
+
+.theme-light .metric-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 110, 214, 0.24);
+  box-shadow: 0 12px 30px rgba(12, 20, 35, 0.14);
+}
+
+.theme-light .metric-card.pink {
+  border-color: rgba(201, 21, 98, 0.28);
 }
 
 .metric-card strong,
@@ -1645,7 +1655,7 @@ main {
 
   .hero-section {
     min-height: auto;
-    padding-top: 54px;
+    padding-top: 130px;
     gap: 34px;
   }
 
